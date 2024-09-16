@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位测试</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box-1 {
+        width: 500px;
+        height: 400px;
+        border: 10px solid lightgreen;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 100px;
+      }
+      .box-2 {
+        width: 90%;
+        height: 90%;
+        border: 10px solid lightcoral;
+      }
+      .box-gray {
+        width: 100px;
+        height: 100px;
+        border: 10px solid lightslategray;
+      }
+      .box-yellow {
+        width: 100px;
+        height: 100px;
+        border: 10px solid yellowgreen;
+        /* outline: rgba(223, 2, 122, 0.5) solid 10px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-1">
+      <div class="box-2">
+        <div class="box-gray"></div>
+        <div class="box-yellow"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位演示</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box-1 {
+        width: 500px;
+        height: 400px;
+        border: 10px solid lightcoral;
+        margin: 0 auto;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .box-2 {
+        width: 400px;
+        height: 300px;
+        border: 10px solid lightsalmon;
+        position: relative;
+      }
+      .up {
+        width: 100px;
+        height: 100px;
+        border: 10px solid lightseagreen;
+        position: absolute;
+        left: 0px;
+        top: 10px;
+      }
+      .down {
+        width: 100px;
+        height: 100px;
+        border: 10px solid lightsteelblue;
+        position: fixed;
+        right: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-1">
+      <div class="box-2">
+        <div class="up"></div>
+        <div class="down"></div>
+      </div>
+    </div>
+  </body>
+</html>

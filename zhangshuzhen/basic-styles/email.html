@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex layout</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .page-wrapper {
+        height: 100vh;
+        background: lightgray;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        height: 50px;
+        background: lightcoral;
+      }
+      .main-content {
+        background: lightgreen;
+        flex-grow: 1;
+        display: flex;
+      }
+      .sidebar {
+        width: 200px;
+        background: lightseagreen;
+      }
+      .content {
+        background: lightskyblue;
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="header">Header</div>
+      <div class="main-content">
+        <div class="sidebar">Sidebar</div>
+        <div class="content">Content</div>
+      </div>
+    </div>
+  </body>
+</html>

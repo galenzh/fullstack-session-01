@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>块级元素</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+      }
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!--文档流-->
+      <div>hello <span class="red">world</span></div>
+      <div>hello world</div>
+      <div>hello world</div>
+      <div>hello world</div>
+    </div>
+    <a style="display: block" href="">百度</a>
+    <a href="">谷歌</a>
+  </body>
+</html>
