@@ -58,15 +58,142 @@ img {
     /* position: relative;
     float: left; */
 }
-.nav-link{
-    /* flex-grow: 1; */
-}
 
 .links{
     float: left;
     margin: 0 20px;
 }
 .login{
-    margin-left: auto;
+    margin-left: auto; 
 }
 
+
+.search{
+    background: #f2f5f4;
+    display: flex;
+    flex-direction: column;
+    /* height: 110px; */
+    /* line-height: 110px; */
+    align-items: center; /* 垂直居中 */
+
+
+}
+.search-bar {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: auto; /* 自动适应内容 */
+    margin-top: 20px;
+}
+
+.search_input {
+    width: 762px;
+    height: 46px;
+    line-height: 46px;
+    float: left;
+    font-size: 16px;
+    padding: 0 16px 0 16px;
+    margin: 0;
+    border: 1px solid #e8e8e8;
+    border-right: none;
+    margin-right: 2px;
+}
+.search_button{
+    /* float: left; */
+    width: 142px;
+    height: 46px;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    background: #00b38a;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+
+}
+
+
+.hotSearch-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    padding-left: 20px; /* 增加热门搜索的左边距 */
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 20px;
+}
+
+.hotSearch {
+    display: flex; /* 让dl的子元素横向排列 */
+    align-items: center; /* 垂直居中 */
+}
+.hotSearch dt {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+.hotSearch dd {
+    margin-right: 15px;
+}
+
+.hotSearch a {
+    color: #00b38a;
+}
+
+.hotSearch a:hover {
+    color: black; /* 悬停时字体颜色变为黑色 */
+}
+
+
+
+
+
+.main{
+    height: 100vh;
+    margin: 40px auto 0;
+    width: 1200px;
+    display: flex;
+}
+.job-category{
+
+    float: left;
+    position: relative;
+    width: 452px;
+}
+
+.home_banner {
+    position: relative;
+    margin-left: 491px;
+    width: 694px;
+    height: 286px;
+    overflow: hidden;
+    top: 20px;
+    
+}
+
+.main-navs{
+    margin: 28px;
+    margin-top: 0px;
+}
+.main-navs h2 {
+    display: inline-block;
+    padding-left: 15px;
+    margin: 0;
+    font-size: 16px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 600;
+    color: #333333;
+}
+
+.main-navs i.arrow {
+    position: absolute;
+    right: 0;
+    top: 23px;
+    width: 6px;
+    height: 11px;
+    margin-right: 8px;
+    background: url(https://lagou-zhaopin-fe.lagou.com/fed/lg-www-node/icons/arrow%402x.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
