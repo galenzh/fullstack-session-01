@@ -1,0 +1,176 @@
+/* 基础样式 */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+a:hover {
+  color: #00b38a;
+  text-decoration: underline;
+}
+ul, li {
+  list-style: none;
+}
+
+/* 设置居中显示，宽度为1200px */
+.p-center {
+ width: 1200px;
+ margin: 0 auto;
+}
+
+/* 顶部广告 */
+.ad-wrapper {
+  height: 80px;
+}
+.ad-wrapper a {
+  display: flex;
+  height: 80px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 顶部菜单 */
+.main-menu-wrapper {
+  height: 40px;
+  background: #32373e;
+}
+.main-menu-wrapper .p-center {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.main-menu-wrapper .link {
+  font-size: 14px;
+  color: #afb5c0;
+  cursor: pointer;
+  transition: 1s color;
+  display: block;
+  line-height: 40px;
+}
+.main-menu-wrapper .link:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+.menu-left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.menu-left a.logo {
+  display: block;
+  width: 66px;
+  height: 16px;
+  background-image: url(https://lagou-zhaopin-fe.lagou.com/fed/lg-www-fed/image/20210624/1624523613071.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 35px;
+}
+.menu-left .btn-city {
+  font-size: 14px;
+  color: #0dca9f;
+  line-height: 40px;
+  cursor: pointer;
+  position: relative;
+}
+.menu-left .btn-city:after {
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #5f646d transparent transparent;
+  right: -14px;
+  top: 19px;
+}
+.menu-left .nav {
+  display: flex;
+  margin-left: 50px;
+}
+.menu-left .nav li {
+  padding: 0 21px;
+}
+.menu-right {
+  display: flex;
+  align-items: center;
+}
+.menu-right .line {
+  padding: 0 7px;
+  color: #5e6166;
+  line-height: 40px;
+}
+.menu-right .btn-login {
+  position: relative;
+}
+.menu-right .btn-login:before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -23px;
+  width: 18px;
+  height: 18px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAelJREFUOBGtVL9LHEEUfu/NrBpEEc6kEg/SiBCwCsQihXgWomdhZyvk/7j/wyJY2Vl4ikUMCrGwlQTERjgRAvkBQQVPd2fG+WYdPfeWCOKD3Zn3ve99M/tm3jKV2Obmt7eG0ndWpMpEA6A4oguxtqUo+TE///GkmOZ5D7a+s1ORa73gyFUf0O4ZE7dsb7axWKv9jdF7oa2tr9WUZMmv3BeD/xt9YjshuzY3N90CLwjlO1GfHokwG81u194khyBKTzqROZ4i5xR8GMRsr1nBzjSAu895tBOI1Gen9hG/s/3m9i5ljmoRwMLI9f5nQWHLahJ3EpMwlmHIhYbgdDrJz5lDQ3DEZcmoSREvw8CBhvYFG/Df2mUoLGoSP+e+2LhRBYNGKHYBz11/OqGwOg3FtRZwt0jM1T504Z1KAPyRk7PHTOrIKP5jBvU/Oju7CbGRkR51ng0p44YdmXFiGYtXARoa194yByFt0tV6feY0rlIYr7yP56d/vjebX0Yz0cvgQEPQO3BgSdJ/mc+efndyoSFoQPQOUttZ+/3TEjkjcpELDQGMBsR1d8yT69t7k41GI+BlooiBAy5ykAuen+fW2bSs5LdjOeAr+0up89DhxgxW3Ct5w85+cMa+hkhX00axF/mNRDGMz/mx3QJcJ+3GAXT3vgAAAABJRU5ErkJggg==) no-repeat;
+  background-size: 100% 100%;
+}
+.menu-right .btn-signup {
+  margin-right: 60px;
+}
+
+/* 搜索框 */
+.search-wrapper {
+  background: #f2f5f4;
+}
+.search-bar {
+  width: 900px;
+  margin: 0 auto;
+  padding: 18px 0 16px 0;
+}
+.search-box {
+  display: flex;
+}
+.search-box input {
+  flex-grow: 1;
+  height: 46px;
+  line-height: 46px;
+  font-size: 16px;
+  padding: 0 16px 0 16px;
+  margin: 0;
+  border: 1px solid #e8e8e8;
+  border-right: none;
+}
+.search-box input:focus {
+  border-color: #00b38a;
+  outline: none;
+}
+.search-box .btn-search {
+  background: #00b38a;
+  width: 142px;
+  height: 46px;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  line-height: 46px;
+}
+.search-box .btn-search:hover {
+  background: #00a57f;
+}
+.hot-search {
+  padding-top: 12px;
+}
+.hot-search span {
+  color: #777;
+  margin-right: 10px;
+}
+.hot-search a {
+  color: #00b38a;
+  margin-right: 10px;
+}
