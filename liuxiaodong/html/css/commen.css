@@ -10,7 +10,9 @@ a {
 
     cursor: pointer; /* 保持点击时的手型 */
 
-
+    body {
+        font-size: 14px;
+    }
 
 }
 a:hover {
@@ -45,9 +47,9 @@ img {
 
 .advertising{
 
-    overflow: hidden;
+    /* overflow: hidden;
     width: 100%;
-    height: 100vh;
+    height: 100vh; */
 }
 .header{
     padding: 0 180px;
@@ -64,6 +66,7 @@ img {
     float: left;
     margin: 0 20px;
 }
+
 .login{
     margin-left: auto; 
 }
@@ -118,11 +121,10 @@ img {
 .hotSearch-box {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    margin-top: 20px;
+    /* align-items: center; */
+    margin: 20px 0 20px -440px;
     padding-left: 20px; /* 增加热门搜索的左边距 */
     align-items: center; /* 垂直居中 */
-    margin-bottom: 20px;
 }
 
 .hotSearch {
@@ -166,7 +168,8 @@ img {
 
 .main-navs{
     margin:  28px;
-    margin-top: 0px;
+    margin-top: -2px;
+    margin-left: -14px;
 }
 .main-navs h2 {
     display: inline-block;
@@ -180,11 +183,23 @@ img {
 
 .home-banner{
     margin-right: 0;
+    overflow: hidden;
+    margin-left: 60px;
+}
+
+.main-navs a{
+    font-size: 15px;
+    color: #666;
+    margin-right: 16px;
+}
+
+.main-navs a:hover{
+    color: #00b38a;
+
 }
 .main-navs i.arrow {
-    position: absolute;
-    right: 0;
-    top: 23px;
+    float: right;
+    margin-top: 7px;
     width: 6px;
     height: 11px;
     margin-right: 8px;
@@ -201,6 +216,155 @@ img {
     display: flex;
 
 }
-.hot{
+.new{
     margin: 0 20px 0 20px;
+}
+
+.design-navs{
+    text-shadow: none;
+    color: #333;
+}
+
+.main-position{
+    display: flex;
+
+    height: 100vh;
+    margin: 40px auto 0;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+}
+.positionList{
+    /* width: 1500px; */
+    flex-wrap: wrap;
+    display: flex;
+    margin-top: 20px;
+
+}
+.positionItem{
+    border: 1px solid #eaeeed;
+    display: flex;
+    width: 389px;
+    height: 200px;
+    margin: 0 11px 20px 0;
+
+
+}
+
+.positionItem-header{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.psositionInfo__3tpuC{
+
+    display: flex;
+}
+.header__3eTMz {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.header__3eTMz .title__2Omkt span {
+    font-size: 16px;
+    color: #333;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    display: inline-block;
+    max-width: 220px;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+.positionList .positionItem .header__3eTMz .salary__TxYSY {
+    font-size: 16px;
+    margin-left: 251px;
+    color: #fa6041;
+}
+
+.base-info{
+        height: 30px;
+        line-height: 30px;
+        color: #777;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+}
+
+.labels{
+    display: inline-block;
+    width: 61px;
+    height: 26px;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 26px;
+    color: #999;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+.company{
+    margin-top: 18px;
+    margin-left: -18px;
+    padding: 0 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.companyLogo__26z_w {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-right: 14px;
+}
+
+.company a {
+    max-width: 250px;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    color: #00b38a;
+}
+.industry__2BSoW {
+    height: 20px;
+    line-height: 20px;
+    color: #999;
+    margin: 0;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+
+.checkMore__2BIX- {
+    display: block;
+    width: 487px;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #00b38a;
+    font-size: 16px;
+    color: #00b38a;
+    text-align: center;
+    -webkit-transition: background-color 0.3s, color 0.1s;
+    transition: background-color 0.3s, color 0.1s;
 }
