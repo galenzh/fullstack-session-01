@@ -102,20 +102,42 @@ img {
     border-right: none;
     margin-right: 2px;
 }
-.search_button{
-    /* float: left; */
+.search_button {
     width: 142px;
     height: 46px;
     font-size: 18px;
+    line-height: 46px;
     color: #fff;
     border: none;
     background: #00b38a;
+    text-align: center;
     cursor: pointer;
     display: flex;
-    justify-content: center; /* 水平居中 */
-    align-items: center; /* 垂直居中 */
-
+    justify-content: center; /* 确保水平居中 */
+    align-items: center; /* 确保垂直居中 */
+    box-sizing: border-box; /* 确保宽度包含内边距 */
+    padding: 0; /* 确保没有多余的内边距 */
+    border-radius: 4px; /* 添加圆角，提升视觉效果 */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* 动效，提升体验 */
 }
+
+/* hover 状态，鼠标悬停时改变背景颜色 */
+.search_button:hover {
+    background-color: #009973; /* 悬停时背景色变深 */
+}
+
+/* focus 状态，点击后添加自定义焦点效果 */
+.search_button:focus {
+    outline: 2px solid #00664d; /* 自定义焦点边框 */
+    outline-offset: 2px;
+}
+
+/* active 状态，按钮被点击时稍微压下 */
+.search_button:active {
+    background-color: #008060; /* 点击时按钮颜色变化 */
+    transform: scale(0.98); /* 轻微缩放效果，按钮有按压感 */
+}
+
 
 
 .hotSearch-box {
@@ -367,4 +389,41 @@ img {
     text-align: center;
     -webkit-transition: background-color 0.3s, color 0.1s;
     transition: background-color 0.3s, color 0.1s;
+}
+
+
+
+.design-tabs{
+    display: flex;
+    border-bottom: 1px solid rgb(224, 219, 219); /* 只为底部设置实线边框 */
+
+    margin-top: 30px;
+
+}
+
+.tabs-tab{
+    margin-right: 30px;
+    
+}
+
+.footer {
+    background-color: #fff;
+    clear: both;
+    border-top: 1px solid #ebebeb;
+    position: relative;
+    z-index: 110;
+    margin-top: 130px;
+}
+
+.footer .wrapper{
+
+}
+.inner-wrapper{
+    
+}
+
+.inner-left{
+
+    border-right: 1px solid #e8e8e8;
+    padding-right: 130px;
 }
