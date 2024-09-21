@@ -551,7 +551,10 @@ img {
   align-items: center;
 
 }
-
+.text-item-footer{
+  height: 80px;
+  background-color: #fff;
+}
 .footer-container .text-item {
   display: flex;
 
