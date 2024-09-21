@@ -66,14 +66,16 @@ img {
 
 .header {
   /* position: fixed; */
+  position: sticky;
+  top: 0;
   width: 100%;
   padding: 0 180px;
   background-color: #32373e;
-  ;
   height: 40px;
   display: flex;
   line-height: 40px;
 
+  z-index: 1000;
   /* position: relative;
     float: left; */
 }
@@ -90,6 +92,8 @@ img {
 
 .search {
   /* position: fixed; */
+  position: sticky;
+  top: 40px;
   width: 100%;
   background: #f2f5f4;
   display: flex;
