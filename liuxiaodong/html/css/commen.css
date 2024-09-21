@@ -63,7 +63,10 @@ img {
     height: 100vh; */
 }
 
+
 .header {
+  /* position: fixed; */
+  width: 100%;
   padding: 0 180px;
   background-color: #32373e;
   ;
@@ -86,6 +89,8 @@ img {
 
 
 .search {
+  /* position: fixed; */
+  width: 100%;
   background: #f2f5f4;
   display: flex;
   flex-direction: column;
@@ -93,7 +98,7 @@ img {
   /* line-height: 110px; */
   align-items: center;
   /* 垂直居中 */
-
+  z-index: 1000;
 
 }
 
@@ -625,4 +630,18 @@ img {
   cursor: pointer;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+/* .loginNavSlider{
+  position: absolute;
+  background-color: #00664d;
+  right: 0;
+  position: fixed;
+  margin-top: 110px;
+  height: 100vh;
+  width: 48px;
+  z-index: 1000;
+} */
+.icon-item-1 {
+  background-image: url(https://lagou-zhaopin-fe.lagou.com/fed/lagou-login-slider-bar/img/icon-item-1.png);
 }
