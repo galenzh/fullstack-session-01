@@ -310,13 +310,13 @@ img {
 }
 
 .base-info{
-        height: 30px;
-        line-height: 30px;
-        color: #777;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        word-wrap: normal;
+    height: 30px;
+    line-height: 30px;
+    color: #777;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
 }
 
 .labels{
@@ -500,4 +500,30 @@ img {
     flex-direction: column;
     display: flex;
     align-items: center;
+
+}
+
+.footer-container .text-item{
+    display: flex;
+
+}
+.footer-container .text-item a{
+    display: block;
+    display: flex;
+    margin: 20px;
+    font-size: 14px;
+    color: #999999;
+}
+
+.footer-container .text-item-line{
+    display: flex;
+
+    height: 50px;
+}
+.footer-container .text-item-line a{
+    display: block;
+    display: flex;
+    margin-right: 40px;
+    font-size: 14px;
+    color: #999999;
 }
