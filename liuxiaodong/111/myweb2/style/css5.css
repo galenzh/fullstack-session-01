@@ -1,0 +1,172 @@
+#BOX {
+    width: 100vw;
+    height: calc(100vh - 3.5vw);
+    background: #00212a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#BOX > .container {
+    width: 70%;
+    height: 95%;
+    background: #f5f5f5;
+    border-radius: 0.5vw;
+}
+
+#BOX > .container > .TOP {
+    height: 11%;
+    text-align: center;
+    line-height: 4vw;
+    font-size: 1.5vw;
+    box-sizing: border-box;
+    border-bottom: 0.1vw solid #e7e7e7;
+}
+
+
+#BOX > .container > .BOTTOM {
+    width: 100%;
+    height: 26%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#BOX > .container > .BOTTOM > textarea {
+    width: 90%;
+    height: 70%;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 2vw;
+    background: none;
+
+}
+
+#BOX > .container > .BOTTOM > input {
+    width: 6vw;
+    height: 2.6vw;
+    font-size: 1.5vw;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    background: #e9e9e9;
+    color: #07c160;
+    cursor: pointer;
+    position: relative;
+    left: 30vw;
+}
+
+#BOX > .container > .NR {
+    width: 100%;
+    height: 63%;
+    box-sizing: border-box;
+    border-bottom: 0.1vw solid #e7e7e7;
+    overflow: auto;
+}
+
+#BOX > .container > .NR > .left {
+    width: 55%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding: 0.5vw;
+    margin-left: 2vw;
+}
+#BOX > .container > .NR > .left >img{
+    width: 3vw;
+    height:3vw ;
+
+}
+#BOX > .container > .NR > .left > div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+}
+#BOX > .container > .NR > .left > div>span{
+    font-size: 1vw;
+    color: #b2b2b2;
+
+}
+#BOX > .container > .NR > .left > div>p{
+    font-size: 1.2vw;
+    margin-top: 0.3vw;
+    color: #232323;
+    background: white;
+    padding: 1vw;
+    position: relative;
+    border-radius: 0.4vw;
+}
+#BOX > .container > .NR > .left > div>p::before{
+    content: "";
+    width: 1vw;
+    height: 1vw;
+    transform-origin: 0 0;
+    transform: rotateZ(45deg);
+    position: absolute;
+    left: 0vw;
+    top: 1vw;
+    background: white;
+}
+#BOX > .container > .NR > .left > div>p:hover{
+    background: #e9e9e9;
+}
+#BOX > .container > .NR > .left > div>p:hover::before{
+    background: #e9e9e9;
+}
+
+
+
+/*.rihgt*/
+#BOX > .container > .NR > .right {
+    width: 55%;
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    padding: 0.5vw;
+    margin-left: 2vw;
+    float: right;
+}
+#BOX > .container > .NR > .right >img{
+    width: 3vw;
+    height:3vw ;
+
+}
+#BOX > .container > .NR > .right > div{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 1vw;
+}
+#BOX > .container > .NR > .right > div>span{
+    font-size: 1vw;
+    color: #b2b2b2;
+
+}
+#BOX > .container > .NR > .right > div>p{
+    font-size: 1.2vw;
+    margin-top: 0.3vw;
+    color: #232323;
+    background: white;
+    padding: 1vw;
+    position: relative;
+    border-radius: 0.4vw;
+}
+#BOX > .container > .NR > .right > div>p::before{
+    content: "";
+    width: 1vw;
+    height: 1vw;
+    transform-origin: 0 0;
+    transform: rotateZ(45deg);
+    position: absolute;
+    right: -1vw;
+    top: 1vw;
+    background: white;
+}
+#BOX > .container > .NR > .right > div>p:hover{
+    background: #e9e9e9;
+}
+#BOX > .container > .NR > .right > div>p:hover::before{
+    background: #e9e9e9;
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/scroll.js"></script>
+    <title>首页</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="nav">
+            <li><a href="index.html" class="current">首页</a></li>
+            <li><a href="role.html">角色介绍</a></li>
+            <li><a href="photoWall.html">照片墙</a></li>
+            <li><img src="./images/logo.gif" alt=""></li>
+            <li><a href="story.html">剧情介绍</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="javascript:void(0);">更多</a>
+                <dl>
+                    <dd>
+                        <a href="login.html">登录</a>
+                    </dd>
+                    <dd>
+                        <a href="register.html">注册</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+        <!-- banner 栏 -->
+        <div class="swipper">
+            <ul class="imgList">
+                <li class="imgList-item active"><img src="images/banner1.jpg" alt=""></li>
+                <li class="imgList-item"><img src="images/banner2.jpg" alt=""></li>
+                <li class="imgList-item"><img src="images/banner3.jpg" alt=""></li>
+                <li class="imgList-item"><img src="images/banner8.jpg" alt=""></li>
+            </ul>
+            <ul class="pointList">
+                <li class="point active" data-index="0"></li>
+                <li class="point" data-index="1"></li>
+                <li class="point" data-index="2"></li>
+                <li class="point" data-index="3"></li>
+            </ul>
+            <button type="button" class="btn" id="goPre"> &lt; </button>
+            <button type="button" class="btn" id="goNext"> &gt; </button>
+        </div>
+
+        <div class="content">
+            <div class="introduction">
+                <div>
+                    <img src="./images/haimian1_1.jpg" alt="">
+                    <p>海绵宝宝</p>
+                </div>
+                <div>
+                    <img src="./images/paidaxing1_1.jpg" alt="">
+                    <p>派大星</p>
+                </div>
+                <div>
+                    <img src="./images/zyg1_1.jpg" alt="">
+                    <p>章鱼哥</p>
+                </div>
+                <div>
+                    <img src="./images/shandi1_1.png" alt="">
+                    <p>珊迪</p>
+                </div>
+                <div>
+                    <img src="./images/xielaoban1_1.jpg" alt="">
+                    <p>蟹老板</p>
+                </div>
+                <div>
+                    <img src="./images/plaoban1_1.jpeg" alt="">
+                    <p>痞老板</p>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 我们的家 -->
+        <div class="familyBg">
+            <div class=" homeGuestLogo_1W">
+                <div><span class="tdLeft">Our Families</span><span class="tdRgiht">我们的家</span></div>
+            </div>
+            <div class="ourFamilies">
+                <div class="left">
+                    <div>
+                        <h3 class="title-big">菠萝屋（凤梨屋）</h3>
+                        <p class="texts">海绵宝宝和小蜗的家，是从某一艘船上掉落的菠萝（凤梨）。</p>
+                    </div>
+                    <div class="sec-bor">
+                        <h3 class="title-big">复活岛人像屋</h3>
+                        <p class="texts">章鱼哥的家，位于海绵宝宝家和派大星家之间，外型为深蓝色复活节岛人像。</p>
+                    </div>
+
+                    <div>
+                        <h3 class="title-big">船锚屋</h3>
+                        <p class="texts">蟹老板和珍珍的家，外型为深蓝色船锚。</p>
+                    </div>
+
+                </div>
+                <div class="center">
+                    <img src="./images/family.png" alt="" class="img-fluid">
+                </div>
+                <div class="right">
+                    <div>
+                        <h3 class="title-big">石头屋</h3>
+                        <p class="texts">派大星的家，位于章鱼哥家隔壁。外型为红棕色半圆体石头，里面的家具摆设由沙子堆成。</p>
+                    </div>
+                    <div class="sec-bor">
+                        <h3 class="title-big">圆顶树屋</h3>
+                        <p class="texts">珊迪的家，里面充满空气，外型以玻璃制成。海洋生物进入常需戴上装水头盔。</p>
+                    </div>
+                    <div>
+                        <h3 class="title-big">海之霸</h3>
+                        <p class="texts">痞老板的餐厅和住所，外观是一个水桶的模样，餐点恶心又不卫生，几乎没有客人上门。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 海绵宝宝 -->
+
+        <div class="aboutBg">
+            <div class=" homeGuestLogo_1W">
+                <div><span class="tdLeft">SpongeBob SquarePants</span><span class="tdRgiht">海绵宝宝</span></div>
+            </div>
+            <div class="aboutBox">
+                <div>
+                    <p>由史蒂芬·海伦伯格原创，舍曼·科恩、沃特·杜赫、山姆·亨德森、保罗·蒂比特、沃尔特·道恩等导演，汤姆·肯尼、比尔·法格巴克、罗杰·布帕斯等配音的美国喜剧动画，于1999年7月17日在尼克国际儿童频道开播。
+                    </p>
+                    <p>央视少儿频道从2006年1月29日大年初一晚20:00开始播出。</p>
+                    <p>《海绵宝宝》的故事情节主要围绕着主角海绵宝宝和他的好朋友派大星、邻居章鱼哥、上司蟹老板等生物展开，场景设定于太平洋海底，一座被称为比基尼海滩的城市。2005年1月30日，该片荣获第32届安妮奖授予的“最佳TV动画制作”奖
+                        。</p>
+                    <p>这部动画除了固定描绘的卡通场景与人物之外，也会穿插一些真实的物件或人物：例如曾出演《海滩游侠》与《霹雳游侠》的大卫·哈塞尔霍夫，以本人的身份出演了几集。但海绵宝宝卡通的内容基本上与海洋知识无关，甚至夸大到完全不合乎科学与常识，例如海底生火、海底冲澡等，剧集内容也会时不时的嘲笑精致艺术和章鱼哥的劳工权益想法。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 图片滚动 -->
+        <div class="scrollBox">
+            <ul>
+                <li><img src="./images/banner1.jpg" alt=""></li>
+                <li><img src="./images/banner2.jpg" alt=""></li>
+                <li><img src="./images/banner3.jpg" alt=""></li>
+                <li><img src="./images/banner4.jpg" alt=""></li>
+                <li><img src="./images/banner5.jpg" alt=""></li>
+                <li><img src="./images/banner6.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div class=" homeGuestLogo_1W">
+            <div><span class="tdLeft">Diagram</span><span class="tdRgiht">人物关系</span></div>
+        </div>
+        <div class="guanxiImg">
+            <img src="./images/guanxi.png" alt="">
+
+        </div>
+        <div class="footer">
+            <div class="cen">
+                <dl>
+                    <dt>
+                        <a href="javascript:void(0);">关于我们</a>
+                    </dt>
+                    <dd><a href="javascript:void(0);">关于我们</a></dd>
+                    <dd><a href="javascript:void(0);">在线反馈</a></dd>
+                    <dd><a href="javascript:void(0);">社会责任报告</a></dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="javascript:void(0);">协议声明</a>
+                    </dt>
+                    <dd><a href="javascript:void(0);">用户协议</a></dd>
+                    <dd><a href="javascript:void(0);">历史协议</a></dd>
+                    <dd><a href="javascript:void(0);">文本知识产权声明</a></dd>
+                    <dd><a href="javascript:void(0);">隐私政策反盗链声明</a></dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="javascript:void(0);">服务合作</a>
+                    </dt>
+                    <dd><a href="javascript:void(0);">广告合作</a></dd>
+                    <dd><a href="javascript:void(0);">内容开放平台入驻</a></dd>
+                </dl>
+            </div>
+            <p>2023&nbsp;www.haimian.com&nbsp;&nbsp;版权所有©&nbsp;</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    var items = document.getElementsByClassName("imgList-item"); //获取图片
+    var goPreBtn = document.getElementById("goPre"); //获取左边按钮
+    var goNextBtn = document.getElementById("goNext"); //获取右边按钮
+    var points = document.getElementsByClassName("point"); //获取小圆点
+    var time = 0; //小圆点图片定时器
+    var index = 0; //表示第几张图片在展示
+    var clearActive = function () {
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = "imgList-item";
+        }
+        for (var i = 0; i < points.length; i++) {
+            points[i].className = "point";
+        }
+    }
+    var goIndex = function () {
+        clearActive();
+        console.log(index);
+        items[index].className = "imgList-item active";
+        points[index].className = "point active";
+        time = -10; //这里的time是定时器的时间
+    }
+    var goNext = function () {
+        if (index < items.length - 1) {
+            index++;
+        } else {
+            index = 0;
+        }
+        goIndex();
+    }
+    var goPre = function () {
+        if (index == 0) {
+            index = 3; //根据图片数量写
+        } else {
+            index--;
+        }
+        goIndex();
+    }
+    //挂载事件
+    goNextBtn.addEventListener("click", function () {
+        goNext();
+    })
+    goPreBtn.addEventListener("click", function () {
+        goPre();
+    })
+    for (var i = 0; i < points.length; i++) {
+        points[i].addEventListener("click", function () {
+            var pointIndex = this.getAttribute("data-index");
+            index = pointIndex;
+            goIndex();
+        })
+    }
+    //定时轮播
+    setInterval(function () {
+        time++;
+        if (time == 30) {
+            goNext();
+            time = 0;
+        }
+    }, 100)
+
+    // 导航吸顶变色
+    var nav = document.querySelector('.nav');
+
+    function animate(obj, target, callback) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function()  {
+            // 如果比0大 就向上取整 如果比0小 就向下取整
+            var step = (target - window.pageYOffset) / 10;
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            window.scroll(0, window.pageYOffset + step);
+            if (window.pageYOffset == target) {
+                clearInterval(obj.timer);
+                callback && callback();
+            }
+        }, 15);
+    }
+    window.addEventListener("scroll", function () {
+        windowHigh = window.pageYOffset;
+        if (windowHigh >= 200) {
+            console.log(111111111111)
+            nav.classList.add('nav2');
+        } else {
+            nav.classList.remove('nav2');
+        }
+    });
+    // 图片滚动
+    $(function () {
+        $('.scrollBox').scroll({
+            speed: 80, //数值越大，速度越快
+            direction: 'horizantal'
+        });
+    });
+</script>
+
+</html>

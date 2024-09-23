@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="./style/css0.css">
+    <link rel="stylesheet" href="./style/css6.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <ol>
+                <li><a href="./index.html">首页</a></li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li><a href="./FZ.html">反诈宣传</a></li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li class="active"><a class="hidden" href="./PJ.html">常见骗局</a></li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li><a class="hidden" href="./AL.html">经典案例</a></li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li><a href="./JL.html">分享经历</a></li>
+            </ol>
+        </li>
+        <li>
+            <ol>
+                <li class="active"><a href="./login.html">登录</a></li>
+            </ol>
+        </li>
+    </ul>
+</nav>
+
+<div >
+    <input type="text" name="user" id="loginuser" value="" placeholder="用户名" />
+    <input type="password" name="pwd" id="loginpwd" value="" placeholder="密码" />
+    <button id="login">登录</button>
+    <p>没有账号？<a href="#" style="color:#ffffff;" id="zc">注册</a></p>
+</div>
+<div class="hide">
+    <input type="text" name="user"  value="" placeholder="用户名" />
+    <input type="password" name="pwd"  value="" placeholder="密码" />
+    <input type="email" name="pwd"  value="" placeholder="邮箱地址" />
+    <button>注册</button>
+    <p>已有账号？<a href="#" style="color:#ffffff;" id="dl">登录</a></p>
+</div>
+
+<script>
+    var divs = document.querySelectorAll('div');
+    var title=document.querySelector('head>title')
+    var zc = document.getElementById('zc');
+    var dl = document.getElementById('dl');
+    zc.onclick = function () {
+        divs[0].className = "hide";
+        divs[1].className = "";
+        title.innerHTML = "注册"
+    }
+    dl.onclick = function () {
+        divs[0].className = "";
+        divs[1].className = "hide";
+        title.innerHTML = "登录";
+    }
+</script>
+<script>
+    var login=document.getElementById('login');
+    login.onclick=function (){
+        var loginuser=document.getElementById('loginuser').value;
+        var loginpwd=document.getElementById('loginpwd').value;
+        if (loginuser=="admin" && loginpwd=="123456"){
+            alert("登录成功！");
+            window.location.replace("./index.html")
+            // window.open('../index.pages');
+        }
+        else{
+            alert("用户名或密码错误！");
+        }
+    }
+</script>
+</body>
+</html>

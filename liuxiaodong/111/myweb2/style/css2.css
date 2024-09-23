@@ -1,0 +1,324 @@
+body{
+    /*background: rgba(189,164,100,0.48);*/
+    background: rgb(223,211,180);
+}
+#pop {
+    width: 100vw;
+    height: calc(100vh - 3.5vw);
+    background: #00212a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+
+#pop::before {
+    content: "狂飙小贴士";
+    position: absolute;
+    width: 100%;
+    height: 5vw;
+    font-size: 3vw;
+    font-weight: bold;
+    line-height: 5vw;
+    text-align: center;
+    top: 0;
+    left: 0;
+    font-family: "楷体";
+    color: #b48909;
+}
+
+#pop > .list {
+    width: 85%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3vw;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1vw;
+    box-shadow: 2vw 2vw 2vw 1vw rgba(3, 45, 57, 0.7),
+    inset 1vw 1vw 2vw 1vw rgba(0, 33, 42, 0.7);
+}
+
+#pop > .list > .item {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-size: 100% 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+#pop > .list > .item:nth-child(1) {
+    background-image: url("../images/KB1.png");
+    background-color: #234143;
+}
+
+#pop > .list > .item:nth-child(2) {
+    background-image: url("../images/KB2.png");
+    background-color: #21231e;
+}
+
+#pop > .list > .item:nth-child(3) {
+    background-image: url("../images/KB3.png");
+    background-color: #9ea093;
+}
+
+#pop > .list > .item:nth-child(4) {
+    background-image: url("../images/KB4.png");
+    background-color: #af6238;
+}
+
+#pop > .list > .item:nth-child(5) {
+    background-image: url("../images/KB5.png");
+    background-color: #dc4c1a;
+}
+
+#pop > .list > .item:nth-child(6) {
+    background-image: url("../images/KB6.png");
+    background-color: #688688;
+}
+
+#pop > .list > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+#pop > .list > .item > .box {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+#pop > .list > .item:nth-child(1) > .box {
+    background: #234143
+}
+
+#pop > .list > .item:nth-child(2) > .box {
+    background: #21231e
+}
+
+#pop > .list > .item:nth-child(3) > .box {
+    background: #9ea093
+}
+
+#pop > .list > .item:nth-child(4) > .box {
+    background: #af6238
+}
+
+#pop > .list > .item:nth-child(5) > .box {
+    background: #dc4c1a
+}
+
+#pop > .list > .item:nth-child(6) > .box {
+    background: #688688
+}
+
+
+#pop > .list > .item > .box > p {
+    position: absolute;
+    top: 4vw;
+    right: 5vw;
+    font-size: 0;
+    font-family: "楷体";
+    color: white;
+}
+
+/*#FS*/
+
+#FS {
+    width: 100vw;
+    height: 46vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: #bad1ec;*/
+    /*background: rgba(189,164,100,0.48);*/
+    user-select: none;
+}
+
+#FS > fieldset {
+    width: 80%;
+    height: 90%;
+    /*background: grey;*/
+    border-radius: 1vw;
+    border: 0.1vw solid #006aab;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    /*box-shadow: 1vw 1vw 10vw 1vw #006aab,*/
+    /*inset 1vw 1vw 10vw 1vw #a1d2ef;*/
+}
+
+#FS > fieldset > legend {
+    text-align: center;
+    font-size: 1.8vw;
+    color: #006aab;
+}
+
+#FS > fieldset > legend > span {
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+#FS > fieldset > legend > p {
+    font-size: 1.8vw;
+    font-weight: 600;
+}
+
+
+#FS > fieldset > p {
+    width: 65%;
+    line-height: 1.7vw;
+    font-size: 1.2vw;
+    margin: 0.7vw auto;
+    position: relative;
+    color: #909090;
+}
+
+#FS > fieldset > p:before {
+    content: "凡是";
+    position: absolute;
+    left: -4.5vw;
+    top: 0;
+    font-size: 1.8vw;
+    color: #206999;
+    font-weight: bold;
+}
+
+
+/*#FZLQ*/
+#FZLQ {
+    width: 95vw;
+    /*height: 100vh;*/
+    margin: 4vw auto;
+    border-radius: 2vw;
+    /*box-shadow: 1vw 1vw 10vw 3vw #006aab,*/
+    /*inset 1vw 1vw 10vw 1vw #a1d2ef;*/
+    /*background: #bad1ec;*/
+    /*background: rgba(189,164,100,0.48);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    border: 0.1vw solid #006aab;
+    user-select: none;
+}
+
+
+#FZLQ > legend {
+    font-size: 3vw;
+    color: #006aab;
+    margin: 0 auto;
+    font-weight: bold;
+    padding: 0 2vw;
+}
+
+#FZLQ > fieldset {
+    width: 80%;
+    border: 0.1vw solid #006aab;
+    /*height: 20vw;*/
+    margin: 3vw 0;
+}
+
+#FZLQ > fieldset > legend {
+    margin: 0 auto;
+    font-size: 1.8vw;
+    padding: 0 2vw;
+    color: #006aab;
+    font-weight: bold;
+    font-family: "楷体";
+}
+
+#FZLQ > fieldset > p {
+    width: 90%;
+    margin: 1vw auto;
+    font-family: "楷体";
+    font-size: 1.4vw;
+    color: #333333;
+}
+
+#FZLQ > fieldset > p > span {
+    display: inline-block;
+    font-size: 1.9vw;
+    color: #206999;
+    font-weight: bold;
+}
+
+#GN {
+    width: 90%;
+    height: 35vw;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    perspective: 61.5vw;
+    transform-style: preserve-3d;
+}
+
+#GN > div {
+    width: 50%;
+    height: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 2vw;
+    position: absolute;
+    top: 4vw;
+    transition: transform 1s ease-in-out;
+    cursor: pointer;
+}
+
+
+#GN > div > p {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.5vw;
+    color: #5c87b4;
+    position: relative;
+    z-index: 1;
+}
+#GN > div > p:nth-child(1)::before{
+    content: "";
+    height: 2vw;
+    width: 2vw;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: -0.8vw;
+    background: #d9e8f7;
+    z-index: -1;
+}
+
+#GN > div > p > span.W {
+    font-size: 1.6vw;
+    color: #306286;
+    font-weight: bold;
+}
+
+#GN > div > p > span.B {
+    color: #3b3d3e;
+}
+
+#GN > div > p > span.L {
+    color: #1c6a98;
+}
+
+#GN > div > p:nth-child(2) {
+    font-size: 1.3vw;
+    color: #92989d;
+    background: #ebf2fd;
+    box-sizing: border-box;
+    padding: 3vw;
+    border-radius: 1vw;
+    text-indent: 2.6vw;
+}

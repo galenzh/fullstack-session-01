@@ -1,0 +1,194 @@
+/*banner*/
+#banner {
+    background-image: url("../images/top01.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    height: calc(100vh - 3.5vw);
+    font-size: 20vw;
+    font-weight: 900;
+    text-align: center;
+    line-height: 50vw;
+    position: relative;
+    /*!*以区块内的文字作为剪裁区域向外剪裁，文字的背景*/
+    /*即为区块的背景，文字之外的区域都将被剪掉*!*/
+    -webkit-background-clip: text;
+    /*!*将文字透明镂空*!*/
+    /*-webkit-text-fill-color: transparent;*/
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.02);
+    /*溢出隐藏*/
+    overflow: hidden;
+    user-select: none;
+}
+
+#banner::before {
+    content: '';
+    /*背景图片继承父元素*/
+    background-image: inherit;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+
+/*#SFQ*/
+#SFQ {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/bg.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#SFQ::before {
+    content: "2023反诈主题电影——孤注一掷";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6vw;
+    text-align: center;
+    font-size: 3vw;
+    line-height: 6vw;
+    color: #b48909;
+    font-family: "楷体";
+    font-weight: bold;
+}
+
+#SFQ > ul {
+    width: 95%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+
+#SFQ > ul > li {
+    width: 10vw;
+    height: 80%;
+    overflow: hidden;
+    margin: 0 1vw;
+    border-radius: 1vw;
+    filter: grayscale(20%) opacity(80%);
+    display: flex;
+    justify-content: center;
+}
+
+#SFQ > ul > li::before {
+    content: attr(data-text2);
+    position: absolute;
+    text-align: center;
+    line-height: 3vw;
+    color: rgba(241, 192, 63, 0.5);
+    font-size: 1.4vw;
+    letter-spacing: 0.3vw;
+    font-family: "楷体";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(0);
+    transition: 0.4s ease-in-out;
+}
+
+#SFQ > ul > li::after {
+    width: 100%;
+    height: 4vw;
+    line-height: 4vw;
+    font-size: 1.5vw;
+    text-align: center;
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    color: rgba(241, 192, 63, 0.9);
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(10vw);
+}
+
+#SFQ > ul > li:nth-child(odd) {
+    transform: translateY(-1vw);
+}
+
+#SFQ > ul > li:nth-child(even) {
+    transform: translateY(1vw);
+}
+
+#SFQ > ul > li > img {
+    width: 20vw;
+}
+
+#SFQ > ul > li.choose {
+    width: 15vw;
+    filter: grayscale(0) opacity(100%);
+}
+
+#SFQ > ul > li.choose::after {
+    transform: translateY(0);
+    transition: 0.4s ease-in-out;
+}
+
+#SFQ > ul > li.choose::before {
+    content: "";
+    background: none;
+    transform: translateY(-5vw);
+}
+
+/*#JQ*/
+#JQ {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/bg.png");
+    background-size: cover;
+    background-position: 50% 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 3vw;
+}
+
+#JQ > h3 {
+    width: 90%;
+    height: 3vw;
+    line-height: 3vw;
+    font-size: 2vw;
+    font-family: "楷体";
+
+    margin: 0 auto;
+    color: #b48909;
+}
+
+#JQ > #essay {
+    width: 80%;
+    height: 40vw;
+    /*overflow-y: auto;*/
+    background: #bda464;
+    overflow-y: scroll;
+    box-shadow: 2vw 2vw 2vw 1vw rgba(0, 0, 0, 0.2),
+    inset 1vw 1vw 2vw 1vw rgba(0, 0, 0, 0.2);
+    border-radius: 2vw;
+}
+
+#JQ > #essay::-webkit-scrollbar {
+    width: 0;
+}
+
+#JQ > #essay > p {
+    width: 80%;
+    line-height: 2vw;
+    font-size: 1.4vw;
+    font-family: "楷体";
+    text-indent: 3vw;
+    margin: 1vw auto;
+}
