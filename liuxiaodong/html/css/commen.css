@@ -309,16 +309,24 @@ img {
   display: flex;
   margin-top: 20px;
 
+
+  row-gap: 16px;
+  column-gap: 16px;
 }
 
 .positionItem {
   border: 1px solid #eaeeed;
+  padding: 20px 18px 0;
   display: flex;
   width: 389px;
   height: 200px;
-  margin: 0 11px 20px 0;
+  /* margin: 0 11px 20px 0; */
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
 
+}
 
+.positionItem:hover{
+  box-shadow: 2px 2px 5px gray;
 }
 
 .positionItem-header {
@@ -357,7 +365,7 @@ img {
 
 .positionList .positionItem .header__3eTMz .salary__TxYSY {
   font-size: 16px;
-  margin-left: 251px;
+  margin-left: 220px;
   color: #fa6041;
 }
 
@@ -442,7 +450,9 @@ img {
   transition: background-color 0.3s, color 0.1s;
 }
 
-
+.checkMore__2BIX-:hover{
+  background: #00b38a;
+}
 
 .design-tabs {
   display: flex;
@@ -586,7 +596,7 @@ img {
 .footer-container .text-item-line a {
   display: block;
   display: flex;
-  margin-right: 40px;
+  margin-right: 20px;
   font-size: 14px;
   color: #999999;
 }

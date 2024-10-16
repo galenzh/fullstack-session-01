@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  max-height: 600px;
+  width: 288px;
+  margin: 0 auto;
+  background: rgb(61, 248, 117);
+  position: relative;
+  overflow: hidden;
+}
+.sky{
+  width: 500px;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(./images/bg_day.png);
+}
+.land{
+  width: 576px;
+  height: 100%;
+  background: url(./images/land.png) repeat-x left 400px;
+  z-index: 200;
+  position: absolute;
+}
+.land-bg{
+  width: 576px;
+  height: 100px;
+  background: rgb(231, 213, 127);
+  position: absolute;
+  bottom: 0;
+}
+.bird {
+  width: 34px;
+  height: 24px;
+  /* background: url(./images/bird0_0.png); */
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+.bird-bg {
+  width: 105px;
+  height: 24px;
+  background: url(images/bird0_0.png) no-repeat, url(images/bird0_1.png) 35px 0px / 35px 35px no-repeat, url(images/bird0_2.png) 70px 0px / 30px 35px no-repeat;
+  background-size: 35px 24px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  animation: bird-fly steps(3, end) 0.5s infinite;
+}
+@keyframes bird-fly{
+  100% {transform: translateX(-105px);}
+}
+.pipe-down{
+  width: 40px;
+  height: 280px;
+  background: url(./images/pipe_down.png);
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+.pipe-up{
+  width: 40px;
+  height: 280px;
+  background: url(./images/pipe_up.png);
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+
+.score{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  font-size: 22px;
+  font-weight: bold;
+  color: aliceblue;
+  top: 10px;
+  right: 10px;
+  z-index: 200;
+}
