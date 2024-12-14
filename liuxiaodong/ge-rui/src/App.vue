@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app1">
     <router-view />
   </div>
 </template>
@@ -12,4 +12,8 @@ export default {
 
 <style>
 /* 全局样式 */
+#app1 {
+  width: 100vw;
+  height: 100vh;
+}
 </style>

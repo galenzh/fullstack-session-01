@@ -1,49 +1,41 @@
 <template>
-  <div class="content-wrapper" :style="{ backgroundImage: `url(${backgroundPicture})` }">
-    <!-- 顶部右上角 Logo -->
-    <div class="header-logo">
-      <img :src="logo" alt="顶部Logo" />
-    </div>
+  <div class="login-bg" :style="{ backgroundImage: `url(${backgroundPicture})` }">
+    <div class="content-wrapper" >
+      <!-- 顶部右上角 Logo -->
+      <div class="header-logo">
+        <img :src="logo" alt="顶部Logo" />
+      </div>
 
-    <!-- 左侧内容部分 -->
-    <div class="main-content">
-      <img class="main-logo" :src="logo" alt="主Logo" />
-      <h1>{{ mainTitle }}</h1>
-      <p>{{ subTitle }}</p>
-    </div>
+      <!-- 左侧内容部分 -->
+      <div class="main-content">
+        <img class="main-logo" :src="logo" alt="主Logo" />
+        <h1>{{ mainTitle }}</h1>
+        <p>{{ subTitle }}</p>
+      </div>
 
-    <!-- 登录框部分 -->
-    <div class="login-box">
-      <h2>密码登录</h2>
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label for="username">用户名</label>
-          <input
-            v-model="username"
-            type="text"
-            id="username"
-            placeholder="请输入用户名"
-          />
+      <!-- 登录框部分 -->
+      <div class="login-box">
+        <h2>密码登录</h2>
+        <form @submit.prevent="handleLogin">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input v-model="username" type="text" id="username" placeholder="请输入用户名" />
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input v-model="password" type="password" id="password" placeholder="请输入密码" />
+          </div>
+          <div class="form-options">
+            <label>
+              <input type="checkbox" v-model="rememberMe" /> 记住密码
+            </label>
+            <router-link to="/forgot-password">忘记密码？</router-link>
+          </div>
+          <button type="submit" class="btn-login">登录</button>
+        </form>
+        <div class="register-link">
+          还没有账号？<router-link to="/register">立即注册</router-link>
         </div>
-        <div class="form-group">
-          <label for="password">密码</label>
-          <input
-            v-model="password"
-            type="password"
-            id="password"
-            placeholder="请输入密码"
-          />
-        </div>
-        <div class="form-options">
-          <label>
-            <input type="checkbox" v-model="rememberMe" /> 记住密码
-          </label>
-          <router-link to="/forgot-password">忘记密码？</router-link>
-        </div>
-        <button type="submit" class="btn-login">登录</button>
-      </form>
-      <div class="register-link">
-        还没有账号？<router-link to="/register">立即注册</router-link>
       </div>
     </div>
   </div>
@@ -119,6 +111,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.login-bg {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
 }
 
 /* 主容器样式 */
