@@ -1,8 +1,13 @@
 <template>
   <div class="content-wrapper">
+    <!-- 顶部右上角 Logo -->
+    <div class="header-logo">
+      <img src="/images/logo_ag.svg" alt="顶部Logo" />
+    </div>
+
     <!-- 左侧部分 -->
     <div class="main-content">
-      <img class="main-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
+      <img class="main-logo" :src="dynamicLogo" alt="格睿 Logo" />
       <h1>{{ dynamicTitle }}</h1>
       <p>{{ subTitle }}</p>
       <button class="main-button">全新上线</button>
@@ -10,7 +15,7 @@
 
     <!-- 右侧登录框 -->
     <div class="login-box">
-      <img class="top-logo" src="@/../public/images/logo_ag.svg" alt="格睿 Logo" />
+      <img class="top-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
       <h2>密码登录</h2>
       <form @submit.prevent="handleLogin">
         <div class="form-group">
@@ -56,19 +61,15 @@ export default {
       mainTitle: "基因变异快速遗传分析与解读工作站",
       subTitle: "Integrated Genetic Rapid Analysis & Interpretation",
       dynamicTitle: "基因变异快速遗传分析与解读工作站", // 默认标题
+      dynamicLogo: "/images/logo_ag.svg", // 默认 logo
+      isLoggedIn: false, // 标志是否登录
     };
-  },
-  watch: {
-    username(newVal) {
-      this.dynamicTitle = newVal
-        ? `欢迎，${newVal}！探索基因奥秘`
-        : "基因变异快速遗传分析与解读工作站";
-    },
   },
   methods: {
     handleLogin() {
       if (this.username && this.password) {
-        alert(`欢迎登录，${this.username}！`);
+        this.isLoggedIn = true; // 设置为已登录
+        this.dynamicTitle = `欢迎，${this.username}！探索基因奥秘`;
       } else {
         alert("请输入用户名和密码！");
       }
@@ -94,6 +95,7 @@ body {
 
 /* 主容器 Flex 布局 */
 .content-wrapper {
+  position: relative; /* 为顶部Logo定位提供基础 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,6 +105,19 @@ body {
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 顶部右上角 Logo */
+.header-logo {
+  position: fixed;
+  top: 20px; /* 调整距离页面顶部的间距 */
+  right: 40px; /* 调整距离页面右侧的间距 */
+  z-index: 10; /* 确保 Logo 显示在最上层 */
+}
+
+.header-logo img {
+  width: 60px; /* 设置 Logo 的宽度 */
+  height: auto;
 }
 
 /* 左侧内容 */
@@ -145,13 +160,6 @@ body {
 .main-button:hover {
   background-color: white;
   color: #007bff;
-}
-
-/* 右上角 Logo */
-.top-logo {
-  width: 100px;
-  margin: 0 auto 20px;
-  display: block;
 }
 
 /* 右侧登录框 */
