@@ -7,17 +7,17 @@
 
     <!-- 左侧部分 -->
     <div class="main-content">
-      <img class="main-logo" :src="dynamicLogo" alt="格睿 Logo" />
-      <h1>{{ dynamicTitle }}</h1>
-      <p>{{ subTitle }}</p>
+      <img class="main-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
+      <h1>基因变异快速遗传分析与解读工作站</h1>
+      <p>Integrated Genetic Rapid Analysis & Interpretation</p>
       <button class="main-button">全新上线</button>
     </div>
 
-    <!-- 右侧登录框 -->
+    <!-- 右侧注册框 -->
     <div class="login-box">
       <img class="top-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
-      <h2>密码登录</h2>
-      <form @submit.prevent="handleLogin">
+      <h2>用户注册</h2>
+      <form @submit.prevent="handleRegister">
         <div class="form-group">
           <label for="username">用户名</label>
           <input
@@ -36,16 +36,37 @@
             placeholder="请输入密码"
           />
         </div>
-        <div class="form-options">
-          <label>
-            <input type="checkbox" v-model="rememberMe" /> 记住密码
-          </label>
-          <router-link to="/change-password">忘记密码？</router-link>
+        <div class="form-group">
+          <label for="confirmPassword">确认密码</label>
+          <input
+            v-model="confirmPassword"
+            type="password"
+            id="confirmPassword"
+            placeholder="请再次输入密码"
+          />
         </div>
-        <button type="submit" class="btn-login">登录</button>
+        <div class="form-group">
+          <label for="phone">手机号</label>
+          <input
+            v-model="phone"
+            type="text"
+            id="phone"
+            placeholder="请输入手机号"
+          />
+        </div>
+        <div class="form-group">
+          <label for="captcha">验证码</label>
+          <input
+            v-model="captcha"
+            type="text"
+            id="captcha"
+            placeholder="请输入验证码"
+          />
+        </div>
+        <button type="submit" class="btn-login">注册</button>
       </form>
       <div class="register-link">
-        还没有账号？<router-link to="/register">立即注册</router-link>
+        已有账号？<router-link to="/">立即登录</router-link>
       </div>
     </div>
   </div>
@@ -57,28 +78,35 @@ export default {
     return {
       username: "",
       password: "",
-      rememberMe: false,
-      mainTitle: "基因变异快速遗传分析与解读工作站",
-      subTitle: "Integrated Genetic Rapid Analysis & Interpretation",
-      dynamicTitle: "基因变异快速遗传分析与解读工作站",
-      dynamicLogo: "/images/logo_ag.svg",
+      confirmPassword: "",
+      phone: "",
+      captcha: "",
     };
   },
   methods: {
-    handleLogin() {
-      if (this.username && this.password) {
-        this.dynamicTitle = `欢迎，${this.username}！探索基因奥秘`;
+    handleRegister() {
+      if (
+        this.username &&
+        this.password &&
+        this.confirmPassword &&
+        this.phone &&
+        this.captcha
+      ) {
+        if (this.password !== this.confirmPassword) {
+          alert("两次密码输入不一致！");
+        } else {
+          alert(`注册成功，欢迎 ${this.username}！`);
+        }
       } else {
-        alert("请输入用户名和密码！");
+        alert("请完整填写所有信息！");
       }
     },
   },
 };
 </script>
 
-
 <style>
-/* 全局背景 */
+/* 样式保持一致 */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -86,15 +114,14 @@ body {
   height: 100vh;
   background: url("@/../public/images/bg.png") no-repeat center center fixed;
   background-size: cover;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
 
-/* 主容器 Flex 布局 */
 .content-wrapper {
-  position: relative; /* 为顶部Logo定位提供基础 */
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,23 +133,19 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* 顶部右上角 Logo */
 .header-logo {
   position: fixed;
-  top: 20px; /* 调整距离页面顶部的间距 */
-  right: 40px; /* 调整距离页面右侧的间距 */
-  z-index: 10; /* 确保 Logo 显示在最上层 */
+  top: 20px;
+  right: 40px;
+  z-index: 10;
 }
 
 .header-logo img {
-  width: 60px; /* 设置 Logo 的宽度 */
-  height: auto;
+  width: 60px;
 }
 
-/* 左侧内容 */
 .main-content {
   flex: 1;
-  padding-right: 50px;
   text-align: left;
 }
 
@@ -133,16 +156,12 @@ body {
 
 .main-content h1 {
   font-size: 30px;
-  font-weight: bold;
-  line-height: 1.4;
-  margin-bottom: 15px;
   color: #fff;
 }
 
 .main-content p {
   font-size: 16px;
   color: #ddd;
-  margin-bottom: 25px;
 }
 
 .main-button {
@@ -153,7 +172,6 @@ body {
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .main-button:hover {
@@ -161,7 +179,6 @@ body {
   color: #007bff;
 }
 
-/* 右侧登录框 */
 .login-box {
   flex-shrink: 0;
   background: #fff;
@@ -174,8 +191,6 @@ body {
 
 .login-box h2 {
   font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
   color: #333;
 }
@@ -187,7 +202,6 @@ body {
 .form-group label {
   display: block;
   font-size: 14px;
-  margin-bottom: 5px;
   color: #666;
 }
 
@@ -196,62 +210,29 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-size: 14px;
-  color: #333;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 .btn-login {
   width: 100%;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
   background: #007bff;
   color: #fff;
   font-size: 16px;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-login:hover {
   background: #0056b3;
-  transform: scale(1.05);
-}
-
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-.form-options a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.form-options a:hover {
-  text-decoration: underline;
 }
 
 .register-link {
   text-align: center;
-  font-size: 14px;
   margin-top: 10px;
 }
 
 .register-link a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
+  color: #007bff;
 }
 </style>
