@@ -1,21 +1,19 @@
 <template>
-  <div class="content-wrapper">
+  <div class="content-wrapper" :style="{ backgroundImage: `url(${backgroundPicture})` }">
     <!-- 顶部右上角 Logo -->
     <div class="header-logo">
-      <img src="/images/logo_ag.svg" alt="顶部Logo" />
+      <img :src="logo" alt="顶部Logo" />
     </div>
 
-    <!-- 左侧部分 -->
+    <!-- 左侧内容部分 -->
     <div class="main-content">
-      <img class="main-logo" :src="dynamicLogo" alt="格睿 Logo" />
-      <h1>{{ dynamicTitle }}</h1>
+      <img class="main-logo" :src="logo" alt="主Logo" />
+      <h1>{{ mainTitle }}</h1>
       <p>{{ subTitle }}</p>
-      <button class="main-button">全新上线</button>
     </div>
 
-    <!-- 右侧登录框 -->
+    <!-- 登录框部分 -->
     <div class="login-box">
-      <img class="top-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
       <h2>密码登录</h2>
       <form @submit.prevent="handleLogin">
         <div class="form-group">
@@ -40,7 +38,7 @@
           <label>
             <input type="checkbox" v-model="rememberMe" /> 记住密码
           </label>
-          <router-link to="/change-password">忘记密码？</router-link>
+          <router-link to="/forgot-password">忘记密码？</router-link>
         </div>
         <button type="submit" class="btn-login">登录</button>
       </form>
@@ -52,22 +50,56 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      rememberMe: false,
-      mainTitle: "基因变异快速遗传分析与解读工作站",
-      subTitle: "Integrated Genetic Rapid Analysis & Interpretation",
-      dynamicTitle: "基因变异快速遗传分析与解读工作站",
-      dynamicLogo: "/images/logo_ag.svg",
+      logo: "", // 动态加载的顶部 Logo
+      backgroundPicture: "", // 动态加载的背景图片
+      mainTitle: "默认主标题", // 主标题
+      subTitle: "默认副标题", // 副标题
+      username: "", // 用户名
+      password: "", // 密码
+      rememberMe: false, // 是否记住密码
     };
   },
+  created() {
+    this.fetchPageSettings();
+  },
   methods: {
+    // 获取页面动态内容
+    fetchPageSettings() {
+      axios
+        .post("http://114.242.62.62:8808/api/get_page_setting/", {
+          Gkey: "kaiumph",
+          page: "login",
+        })
+        .then((response) => {
+          if (response.status === 200 && response.data.code === 200) {
+            const data = response.data.msg;
+            this.logo = data.logo || "";
+            this.backgroundPicture = data.background_picture || "";
+            [this.mainTitle, this.subTitle] = data.maintext
+              ? data.maintext.split("\r\n")
+              : ["默认主标题", "默认副标题"];
+          } else {
+            alert("获取页面信息失败，请稍后重试！");
+          }
+        })
+        .catch((error) => {
+          console.error("API请求错误:", error);
+          alert("无法连接到服务器，请检查网络！");
+        });
+    },
+
+    // 登录处理逻辑
     handleLogin() {
       if (this.username && this.password) {
-        this.dynamicTitle = `欢迎，${this.username}！探索基因奥秘`;
+        if (this.rememberMe) {
+          localStorage.setItem("username", this.username);
+        }
+        alert(`欢迎 ${this.username}！`);
       } else {
         alert("请输入用户名和密码！");
       }
@@ -76,25 +108,22 @@ export default {
 };
 </script>
 
-
 <style>
-/* 全局背景 */
+/* 页面背景 */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: url("@/../public/images/bg.png") no-repeat center center fixed;
-  background-size: cover;
+  background-color: #f0f2f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
 
-/* 主容器 Flex 布局 */
+/* 主容器样式 */
 .content-wrapper {
-  position: relative; /* 为顶部Logo定位提供基础 */
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,25 +133,24 @@ body {
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-position: center;
 }
 
 /* 顶部右上角 Logo */
 .header-logo {
   position: fixed;
-  top: 20px; /* 调整距离页面顶部的间距 */
-  right: 40px; /* 调整距离页面右侧的间距 */
-  z-index: 10; /* 确保 Logo 显示在最上层 */
+  top: 20px;
+  right: 40px;
 }
 
 .header-logo img {
-  width: 60px; /* 设置 Logo 的宽度 */
-  height: auto;
+  width: 60px;
 }
 
-/* 左侧内容 */
+/* 左侧内容部分 */
 .main-content {
   flex: 1;
-  padding-right: 50px;
   text-align: left;
 }
 
@@ -133,16 +161,12 @@ body {
 
 .main-content h1 {
   font-size: 30px;
-  font-weight: bold;
-  line-height: 1.4;
-  margin-bottom: 15px;
   color: #fff;
 }
 
 .main-content p {
   font-size: 16px;
   color: #ddd;
-  margin-bottom: 25px;
 }
 
 .main-button {
@@ -153,7 +177,6 @@ body {
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .main-button:hover {
@@ -161,7 +184,7 @@ body {
   color: #007bff;
 }
 
-/* 右侧登录框 */
+/* 登录框样式 */
 .login-box {
   flex-shrink: 0;
   background: #fff;
@@ -174,8 +197,6 @@ body {
 
 .login-box h2 {
   font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
   color: #333;
 }
@@ -187,7 +208,6 @@ body {
 .form-group label {
   display: block;
   font-size: 14px;
-  margin-bottom: 5px;
   color: #666;
 }
 
@@ -196,58 +216,36 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-size: 14px;
-  color: #333;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-}
-
-.btn-login {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: #007bff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn-login:hover {
-  background: #0056b3;
-  transform: scale(1.05);
 }
 
 .form-options {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-.form-options a {
-  color: #3498db;
-  text-decoration: none;
+.btn-login {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.form-options a:hover {
-  text-decoration: underline;
+.btn-login:hover {
+  background: #0056b3;
 }
 
 .register-link {
   text-align: center;
-  font-size: 14px;
   margin-top: 10px;
 }
 
 .register-link a {
-  color: #3498db;
+  color: #007bff;
   text-decoration: none;
 }
 

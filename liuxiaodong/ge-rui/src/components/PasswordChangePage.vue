@@ -1,21 +1,19 @@
 <template>
-  <div class="content-wrapper">
+  <div class="content-wrapper" :style="{ backgroundImage: `url(${backgroundPicture})` }">
     <!-- 顶部右上角 Logo -->
     <div class="header-logo">
-      <img src="/images/logo_ag.svg" alt="顶部Logo" />
+      <img :src="logo" alt="顶部Logo" />
     </div>
 
-    <!-- 左侧部分 -->
+    <!-- 左侧内容部分 -->
     <div class="main-content">
-      <img class="main-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
-      <h1>基因变异快速遗传分析与解读工作站</h1>
-      <p>Integrated Genetic Rapid Analysis & Interpretation</p>
-      <button class="main-button">全新上线</button>
+      <img class="main-logo" :src="logo" alt="主Logo" />
+      <h1>{{ mainTitle }}</h1>
+      <p>{{ subTitle }}</p>
     </div>
 
     <!-- 右侧修改密码框 -->
     <div class="login-box">
-      <img class="top-logo" src="/images/logo_ag.svg" alt="格睿 Logo" />
       <h2>密码修改</h2>
       <form @submit.prevent="handlePasswordChange">
         <div class="form-group">
@@ -64,42 +62,85 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      logo: "",
+      backgroundPicture: "",
+      mainTitle: "默认主标题",
+      subTitle: "默认副标题",
       username: "",
       oldPassword: "",
       newPassword: "",
       captcha: "",
     };
   },
+  created() {
+    this.fetchPageSettings();
+  },
   methods: {
+    // 获取页面设置
+    fetchPageSettings() {
+      axios
+        .post("http://114.242.62.62:8808/api/get_page_setting/", {
+          Gkey: "kaiumph",
+          page: "password_change",
+        })
+        .then((response) => {
+          if (response.status === 200 && response.data.code === 200) {
+            const data = response.data.msg;
+            this.logo = data.logo || "";
+            this.backgroundPicture = data.background_picture || "";
+            [this.mainTitle, this.subTitle] = data.maintext
+              ? data.maintext.split("\r\n")
+              : ["默认主标题", "默认副标题"];
+          } else {
+            alert("获取页面信息失败，请稍后重试！");
+          }
+        })
+        .catch((error) => {
+          console.error("API请求错误:", error);
+          alert("无法连接到服务器，请检查网络！");
+        });
+    },
+
+    // 处理密码修改逻辑
     handlePasswordChange() {
-      if (this.username && this.oldPassword && this.newPassword && this.captcha) {
-        alert(`密码修改成功，欢迎 ${this.username}！`);
-      } else {
+      if (!this.username || !this.oldPassword || !this.newPassword || !this.captcha) {
         alert("请完整填写所有信息！");
+        return;
       }
+
+      // 验证码校验（模拟校验）
+      if (this.captcha !== "1234") {
+        alert("验证码错误！");
+        return;
+      }
+
+      // 模拟提交数据
+      alert(`密码修改成功，欢迎 ${this.username}！`);
+      this.$router.push("/"); // 修改成功后跳转到登录页面
     },
   },
 };
 </script>
 
 <style>
-/* 样式保持一致 */
+/* 页面背景 */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: url("@/../public/images/bg.png") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
+  background-color: #f0f2f5;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* 主容器样式 */
 .content-wrapper {
   position: relative;
   display: flex;
@@ -113,17 +154,18 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* 顶部右上角 Logo */
 .header-logo {
   position: fixed;
   top: 20px;
   right: 40px;
-  z-index: 10;
 }
 
 .header-logo img {
   width: 60px;
 }
 
+/* 左侧内容部分 */
 .main-content {
   flex: 1;
   text-align: left;
@@ -159,6 +201,7 @@ body {
   color: #007bff;
 }
 
+/* 修改密码框样式 */
 .login-box {
   flex-shrink: 0;
   background: #fff;
@@ -214,5 +257,10 @@ body {
 
 .register-link a {
   color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 </style>
