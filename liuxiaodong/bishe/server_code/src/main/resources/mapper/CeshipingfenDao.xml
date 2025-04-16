@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cl.dao.CeshipingfenDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.cl.entity.CeshipingfenEntity" id="ceshipingfenMap">
+        <result property="zixunshizhanghao" column="zixunshizhanghao"/>
+        <result property="lianxifangshi" column="lianxifangshi"/>
+        <result property="pingfenshijian" column="pingfenshijian"/>
+        <result property="zhanghao" column="zhanghao"/>
+        <result property="shouji" column="shouji"/>
+        <result property="pingfen" column="pingfen"/>
+        <result property="ceshibaogao" column="ceshibaogao"/>
+        <result property="pingfenbeizhu" column="pingfenbeizhu"/>
+    </resultMap>
+
+    <select id="selectListView"
+		resultType="com.cl.entity.view.CeshipingfenView" >
+
+		SELECT  ceshipingfen.* FROM ceshipingfen  ceshipingfen 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.cl.entity.view.CeshipingfenView" >
+		SELECT * FROM ceshipingfen  ceshipingfen <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectValue" resultType="map" >
+        SELECT ${params.xColumn}, ROUND(sum(${params.yColumn}),1) total FROM ceshipingfen
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.xColumn}
+        limit 10
+    </select>
+
+    <select id="selectTimeStatValue" resultType="map" >
+        <if test = 'params.timeStatType == "日"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m-%d') ${params.xColumn}, sum(${params.yColumn}) total FROM ceshipingfen
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m-%d')
+        </if>
+        <if test = 'params.timeStatType == "月"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m') ${params.xColumn}, sum(${params.yColumn}) total FROM ceshipingfen
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m')
+        </if>
+        <if test = 'params.timeStatType == "年"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y') ${params.xColumn}, sum(${params.yColumn}) total FROM ceshipingfen
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y')
+        </if>
+    </select>
+
+    <select id="selectGroup" resultType="map" >
+        SELECT ${params.column} , count(1) total FROM ceshipingfen
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.column}
+        limit 10
+    </select>
+
+    <select id="pingfenSectionStat" resultType="map" >
+        SELECT '轻度抑郁' as pingfen,case when t.轻度抑郁 is null then 0 else t.轻度抑郁 end total
+        from
+        (select
+        sum(case when pingfen &lt;= 59 then 1 else 0 end) as 轻度抑郁,        sum(case when pingfen >= 60 and pingfen &lt;= 70 then 1 else 0 end) as 中度抑郁,        sum(case when pingfen >= 71 then 1 else 0 end) as 重度抑郁        from ceshipingfen
+        <where> 1=1 ${ew.sqlSegment}</where>
+        ) t
+        union all
+        SELECT '中度抑郁' as pingfen,case when t.中度抑郁 is null then 0 else t.中度抑郁 end total
+        from
+        (select
+        sum(case when pingfen &lt;= 59 then 1 else 0 end) as 轻度抑郁,        sum(case when pingfen >= 60 and pingfen &lt;= 70 then 1 else 0 end) as 中度抑郁,        sum(case when pingfen >= 71 then 1 else 0 end) as 重度抑郁        from ceshipingfen
+        <where> 1=1 ${ew.sqlSegment}</where>
+        ) t
+        union all
+        SELECT '重度抑郁' as pingfen,case when t.重度抑郁 is null then 0 else t.重度抑郁 end total
+        from
+        (select
+        sum(case when pingfen &lt;= 59 then 1 else 0 end) as 轻度抑郁,        sum(case when pingfen >= 60 and pingfen &lt;= 70 then 1 else 0 end) as 中度抑郁,        sum(case when pingfen >= 71 then 1 else 0 end) as 重度抑郁        from ceshipingfen
+        <where> 1=1 ${ew.sqlSegment}</where>
+        ) t
+    </select>
+</mapper>

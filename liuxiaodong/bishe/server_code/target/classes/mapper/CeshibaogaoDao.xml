@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cl.dao.CeshibaogaoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.cl.entity.CeshibaogaoEntity" id="ceshibaogaoMap">
+        <result property="ceshixiangmu" column="ceshixiangmu"/>
+        <result property="ceshishijian" column="ceshishijian"/>
+        <result property="ceshibaogao" column="ceshibaogao"/>
+        <result property="ceshichengji" column="ceshichengji"/>
+        <result property="shentijinengpinggu" column="shentijinengpinggu"/>
+        <result property="zhanghao" column="zhanghao"/>
+        <result property="xingming" column="xingming"/>
+        <result property="xingbie" column="xingbie"/>
+        <result property="baogaoshijian" column="baogaoshijian"/>
+        <result property="zixunshizhanghao" column="zixunshizhanghao"/>
+        <result property="zixunshixingming" column="zixunshixingming"/>
+    </resultMap>
+
+    <select id="selectListView"
+		resultType="com.cl.entity.view.CeshibaogaoView" >
+
+		SELECT  ceshibaogao.* FROM ceshibaogao  ceshibaogao 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.cl.entity.view.CeshibaogaoView" >
+		SELECT * FROM ceshibaogao  ceshibaogao <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+
+
+</mapper>

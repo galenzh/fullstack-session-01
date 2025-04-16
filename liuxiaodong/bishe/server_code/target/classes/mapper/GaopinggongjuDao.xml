@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cl.dao.GaopinggongjuDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.cl.entity.GaopinggongjuEntity" id="gaopinggongjuMap">
+        <result property="gongjumingcheng" column="gongjumingcheng"/>
+        <result property="tupian" column="tupian"/>
+        <result property="xiangqing" column="xiangqing"/>
+        <result property="shiyongfangfa" column="shiyongfangfa"/>
+        <result property="price" column="price"/>
+        <result property="discussNumber" column="discuss_number"/>
+    </resultMap>
+
+    <select id="selectListView"
+		resultType="com.cl.entity.view.GaopinggongjuView" >
+
+		SELECT  gaopinggongju.* FROM gaopinggongju  gaopinggongju 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.cl.entity.view.GaopinggongjuView" >
+		SELECT * FROM gaopinggongju  gaopinggongju <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+
+
+</mapper>
