@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>可拖动折线图</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2px;
+    }
+    .dot {
+      fill: steelblue;
+      cursor: pointer;
+    }
+    .grid line {
+      stroke: #e0e0e0;
+      stroke-opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>可拖动折线图</h1>
+  <div id="chart"></div>
+  <script>
+    // 数据 (时间点作为 x，BP 值作为 y)
+    let data = [
+      { time: "2023-03-03 10:15", x: 0, y: 82 },
+      { time: "2023-03-03 10:30", x: 1, y: 85 },
+      { time: "2023-03-03 10:45", x: 2, y: 80 },
+      { time: "2023-03-03 11:00", x: 3, y: 83 }
+    ];
+
+    // 设置宽度和高度
+    const width = 800;
+    const height = 400;
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+
+    // 创建 SVG
+    const svg = d3
+      .select("#chart")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    // x 和 y 轴比例尺
+    const xScale = d3
+      .scaleLinear()
+      .domain([0, data.length - 1])
+      .range([margin.left, width - margin.right]);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([70, 100]) // 根据数据调整范围
+      .range([height - margin.bottom, margin.top]);
+
+    // 创建 x 轴和 y 轴
+    const xAxis = d3.axisBottom(xScale).ticks(data.length).tickFormat((d, i) => data[i].time);
+    const yAxis = d3.axisLeft(yScale);
+
+    svg
+      .append("g")
+      .attr("transform", `translate(0, ${height - margin.bottom})`)
+      .call(xAxis)
+      .selectAll("text")
+      .attr("transform", "rotate(-45)")
+      .style("text-anchor", "end");
+
+    svg
+      .append("g")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .call(yAxis);
+
+    // 折线生成器
+    const line = d3
+      .line()
+      .x(d => xScale(d.x))
+      .y(d => yScale(d.y));
+
+    // 绘制折线
+    const path = svg
+      .append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", line);
+
+    // 数据点
+    const dots = svg
+      .selectAll(".dot")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("class", "dot")
+      .attr("cx", d => xScale(d.x))
+      .attr("cy", d => yScale(d.y))
+      .attr("r", 6)
+      .call(
+        d3.drag()
+          .on("start", (event, d) => {
+            d3.select(event.sourceEvent.target).raise().attr("stroke", "black");
+          })
+          .on("drag", (event, d) => {
+            // 更新数据点的位置
+            d.y = yScale.invert(event.y); // 将像素坐标转回数据值
+            d.y = Math.max(70, Math.min(100, d.y)); // 限制在 y 轴范围内
+            d3.select(event.sourceEvent.target)
+              .attr("cy", yScale(d.y)); // 更新数据点位置
+
+            // 更新折线
+            path.attr("d", line);
+          })
+          .on("end", (event, d) => {
+            d3.select(event.sourceEvent.target).attr("stroke", null);
+          })
+      );
+
+    // 添加提示框
+    const tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    dots
+      .on("mouseover", (event, d) => {
+        tooltip
+          .style("opacity", 1)
+          .html(`时间: ${d.time}<br>值: ${Math.round(d.y)}`)
+          .style("left", event.pageX + "px")
+          .style("top", event.pageY - 28 + "px");
+      })
+      .on("mouseout", () => tooltip.style("opacity", 0));
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 <template>
   <div class="login-bg" :style="{ backgroundImage: `url(${backgroundPicture})` }">
-    <div class="content-wrapper" >
+    <div class="content-wrapper">
       <!-- 顶部右上角 Logo -->
       <div class="header-logo">
         <img :src="logo" alt="顶部Logo" />
@@ -29,7 +29,7 @@
             <label>
               <input type="checkbox" v-model="rememberMe" /> 记住密码
             </label>
-            <router-link to="/forgot-password">忘记密码？</router-link>
+            <router-link to="/change_password">忘记密码？</router-link>
           </div>
           <button type="submit" class="btn-login">登录</button>
         </form>
@@ -88,10 +88,12 @@ export default {
     // 登录处理逻辑
     handleLogin() {
       if (this.username && this.password) {
+        this.mainTitle = `欢迎，${this.username}！探索基因奥秘`;
+        this.subTitle = "开始您的专属基因之旅！";
         if (this.rememberMe) {
           localStorage.setItem("username", this.username);
         }
-        alert(`欢迎 ${this.username}！`);
+        alert(`登录成功！欢迎 ${this.username}！`);
       } else {
         alert("请输入用户名和密码！");
       }
@@ -120,6 +122,7 @@ body {
   justify-content: center;
   align-items: center;
   background-size: cover;
+  background-position: center;
 }
 
 /* 主容器样式 */
@@ -134,8 +137,6 @@ body {
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  background-size: cover;
-  background-position: center;
 }
 
 /* 顶部右上角 Logo */
@@ -168,21 +169,6 @@ body {
 .main-content p {
   font-size: 16px;
   color: #ddd;
-}
-
-.main-button {
-  padding: 12px 30px;
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.main-button:hover {
-  background-color: white;
-  color: #007bff;
 }
 
 /* 登录框样式 */

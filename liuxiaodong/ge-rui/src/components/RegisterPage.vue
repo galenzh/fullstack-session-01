@@ -1,70 +1,48 @@
 <template>
-  <div class="content-wrapper" :style="{ backgroundImage: `url(${backgroundPicture})` }">
-    <!-- 顶部右上角 Logo -->
-    <div class="header-logo">
-      <img :src="logo" alt="顶部Logo" />
-    </div>
+  <div class="login-bg" :style="{ backgroundImage: `url(${backgroundPicture})` }">
+    <div class="content-wrapper">
+      <!-- 顶部右上角 Logo -->
+      <div class="header-logo">
+        <img :src="logo" alt="顶部Logo" />
+      </div>
 
-    <!-- 左侧内容部分 -->
-    <div class="main-content">
-      <img class="main-logo" :src="logo" alt="主Logo" />
-      <h1>{{ mainTitle }}</h1>
-      <p>{{ subTitle }}</p>
-    </div>
+      <!-- 左侧内容部分 -->
+      <div class="main-content">
+        <img class="main-logo" :src="logo" alt="主Logo" />
+        <h1>{{ mainTitle }}</h1>
+        <p>{{ subTitle }}</p>
+      </div>
 
-    <!-- 右侧注册框 -->
-    <div class="login-box">
-      <h2>用户注册</h2>
-      <form @submit.prevent="handleRegister">
-        <div class="form-group">
-          <label for="username">用户名</label>
-          <input
-            v-model="username"
-            type="text"
-            id="username"
-            placeholder="请输入用户名"
-          />
+      <!-- 注册框部分 -->
+      <div class="login-box">
+        <h2>用户注册</h2>
+        <form @submit.prevent="handleRegister">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input v-model="username" type="text" id="username" placeholder="请输入用户名" />
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input v-model="password" type="password" id="password" placeholder="请输入密码" />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">确认密码</label>
+            <input v-model="confirmPassword" type="password" id="confirmPassword" placeholder="请再次输入密码" />
+          </div>
+          <div class="form-group">
+            <label for="phone">手机号</label>
+            <input v-model="phone" type="text" id="phone" placeholder="请输入手机号" />
+          </div>
+          <div class="form-group">
+            <label for="captcha">验证码</label>
+            <input v-model="captcha" type="text" id="captcha" placeholder="请输入验证码" />
+            <button type="button" @click="sendCaptcha" class="btn-captcha">获取验证码</button>
+          </div>
+          <button type="submit" class="btn-login">注册</button>
+        </form>
+        <div class="register-link">
+          已有账号？<router-link to="/login">立即登录</router-link>
         </div>
-        <div class="form-group">
-          <label for="password">密码</label>
-          <input
-            v-model="password"
-            type="password"
-            id="password"
-            placeholder="请输入密码"
-          />
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">确认密码</label>
-          <input
-            v-model="confirmPassword"
-            type="password"
-            id="confirmPassword"
-            placeholder="请再次输入密码"
-          />
-        </div>
-        <div class="form-group">
-          <label for="phone">手机号</label>
-          <input
-            v-model="phone"
-            type="text"
-            id="phone"
-            placeholder="请输入手机号"
-          />
-        </div>
-        <div class="form-group">
-          <label for="captcha">验证码</label>
-          <input
-            v-model="captcha"
-            type="text"
-            id="captcha"
-            placeholder="请输入验证码"
-          />
-        </div>
-        <button type="submit" class="btn-login">注册</button>
-      </form>
-      <div class="register-link">
-        已有账号？<router-link to="/">立即登录</router-link>
       </div>
     </div>
   </div>
@@ -76,8 +54,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      logo: "", // 顶部Logo
-      backgroundPicture: "", // 背景图片
+      logo: "", // 动态加载的顶部 Logo
+      backgroundPicture: "", // 动态加载的背景图片
       mainTitle: "默认主标题", // 主标题
       subTitle: "默认副标题", // 副标题
       username: "", // 用户名
@@ -91,7 +69,7 @@ export default {
     this.fetchPageSettings();
   },
   methods: {
-    // 获取页面设置
+    // 获取页面动态内容
     fetchPageSettings() {
       axios
         .post("http://114.242.62.62:8808/api/get_page_setting/", {
@@ -116,30 +94,55 @@ export default {
         });
     },
 
-    // 处理注册逻辑
+    // 发送验证码（这里只是模拟，实际项目中需要与后端接口对接）
+    sendCaptcha() {
+      if (this.phone) {
+        alert("验证码已发送至您的手机号！");
+        // 在这里可以通过 Axios 调用发送验证码的接口
+        // axios.post('/api/send-captcha', { phone: this.phone })
+        //   .then(response => { ... });
+      } else {
+        alert("请输入手机号！");
+      }
+    },
+
+    // 注册处理逻辑
     handleRegister() {
-      // 手机号格式校验
-      const phoneRegex = /^1[3-9]\d{9}$/;
-      if (!phoneRegex.test(this.phone)) {
+      // 简单表单验证
+      if (!this.username || !this.password || !this.confirmPassword || !this.phone || !this.captcha) {
+        alert("所有字段不能为空！");
+        return;
+      }
+      if (this.password !== this.confirmPassword) {
+        alert("密码和确认密码不一致！");
+        return;
+      }
+      const phonePattern = /^[1][3-9][0-9]{9}$/; // 手机号正则
+      if (!phonePattern.test(this.phone)) {
         alert("请输入有效的手机号！");
         return;
       }
 
-      // 检查两次密码是否一致
-      if (this.password !== this.confirmPassword) {
-        alert("两次输入的密码不一致！");
-        return;
-      }
-
-      // 检查必填字段
-      if (!this.username || !this.password || !this.confirmPassword || !this.phone || !this.captcha) {
-        alert("请完整填写所有信息！");
-        return;
-      }
-
-      // 模拟提交注册数据
-      alert(`注册成功！欢迎 ${this.username}`);
-      this.$router.push("/"); // 注册成功后跳转到登录页面
+      // 假设后端注册接口
+      axios
+        .post("http://114.242.62.62:8808/api/get_page_setting/", {
+          username: this.username,
+          password: this.password,
+          phone: this.phone,
+          captcha: this.captcha,
+        })
+        .then((response) => {
+          if (response.status === 200 && response.data.code === 200) {
+            alert("注册成功！");
+            this.$router.push("/login"); // 注册成功后跳转到登录页面
+          } else {
+            alert(response.data.msg || "注册失败，请稍后重试！");
+          }
+        })
+        .catch((error) => {
+          console.error("注册请求错误:", error);
+          alert("无法连接到服务器，请检查网络！");
+        });
     },
   },
 };
@@ -156,6 +159,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.login-bg {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
 }
 
 /* 主容器样式 */
@@ -204,21 +217,6 @@ body {
   color: #ddd;
 }
 
-.main-button {
-  padding: 12px 30px;
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.main-button:hover {
-  background-color: white;
-  color: #007bff;
-}
-
 /* 注册框样式 */
 .login-box {
   flex-shrink: 0;
@@ -253,6 +251,12 @@ body {
   border: 1px solid #ccc;
 }
 
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 .btn-login {
   width: 100%;
   padding: 10px;
@@ -266,6 +270,16 @@ body {
 
 .btn-login:hover {
   background: #0056b3;
+}
+
+.btn-captcha {
+  background: #ccc;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
 }
 
 .register-link {
