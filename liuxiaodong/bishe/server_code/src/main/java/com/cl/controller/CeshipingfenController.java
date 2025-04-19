@@ -85,7 +85,6 @@ public class CeshipingfenController {
             
             // 如果没有评分记录
             if (latestScore == null) {
-                System.out.println("用户无评分记录，需要进行心理测试");
                 Map<String, Object> data = new HashMap<>();
                 data.put("pass", false);
                 data.put("score", 0);
@@ -116,7 +115,6 @@ public class CeshipingfenController {
             boolean needConsultation = score < 60;
             
             System.out.println("用户评分: " + score + ", 是否合格: " + pass + ", 是否需要咨询: " + needConsultation);
-            System.out.println("============ 检查评分结束 ============\n");
             
             Map<String, Object> data = new HashMap<>();
             data.put("pass", pass);

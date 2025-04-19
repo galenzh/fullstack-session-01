@@ -104,7 +104,7 @@ const config = {
 					                  child:[
 
 						{
-							name:'高评工具',
+							name:'服务购买',
                             url:'/index/gaopinggongjuList'
 
 						},

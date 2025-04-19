@@ -50,21 +50,28 @@
 				</div>
 				<div class="info_item">
 					<div class="info_label">详情</div>
-					<div  class="info_text" >{{detail.xiangqing}}</div>
+					<div class="info_text">{{detail.xiangqing}}</div>
 				</div>
 				<div class="info_item">
 					<div class="info_label">使用方法</div>
-					<div  class="info_text" >{{detail.shiyongfangfa}}</div>
+					<div class="info_text">{{detail.shiyongfangfa}}</div>
 				</div>
 				<div class="info_item">
 					<div class="info_label">评论数</div>
-					<div  class="info_text" >{{detail.discussNumber}}</div>
+					<div class="info_text">{{detail.discussNumber}}</div>
 				</div>
-				<div class="btn_view">
-					<el-input-number class="inputNumber" v-model="buyNumber" :min="1" ></el-input-number>
-                    <div class="break"></div>
-					<el-button class="addCart_btn"  type="primary" @click="addCart">加入购物车</el-button>
-					<el-button class="buyNow_btn"  type="primary" @click="buyNow">立即购买</el-button>
+				<div class="action-buttons">
+					<div class="input-container">
+						<el-input-number class="inputNumber" v-model="buyNumber" :min="1"></el-input-number>
+					</div>
+					<div class="buttons-container">
+						<el-button class="cart-button" type="primary" @click="addCart">
+							<i class="el-icon-shopping-cart-2"></i> 加入购物车
+						</el-button>
+						<el-button class="buy-button" type="success" @click="buyNow">
+							<i class="el-icon-shopping-bag-1"></i> 立即购买
+						</el-button>
+					</div>
 				</div>
 				<div class="btn_view">
 					<el-button class="edit_btn" v-if="centerType&&btnAuth('gaopinggongju','修改')" type="primary" @click="editClick">修改</el-button>
@@ -78,13 +85,17 @@
 					<el-form ref="commentFormRef" :model="commentForm" class="my_comment_form"
 						:rules="commentRules">
 						<el-form-item prop="content">
-                            <editor :value="commentForm.content" placeholder="善语结善缘,恶语伤人心"
+                            <editor :value="commentForm.content" placeholder="请分享您的使用体验和建议..."
                                     class="list_editor" @change="contentChange"></editor>
 						</el-form-item>
 					</el-form>
 					<div class="comment_btn">
-						<el-button class="add_btn" type="primary" @click="commentSave">立即评论</el-button>
-						<el-button class="reset_btn" @click="resetForm">重置</el-button>
+						<el-button class="add_btn" type="primary" @click="commentSave">
+							<i class="el-icon-position"></i> 发表评论
+						</el-button>
+						<el-button class="reset_btn" @click="resetForm">
+							<i class="el-icon-refresh-right"></i> 重置
+						</el-button>
 					</div>
 				</div>
 				<div class="comment_list">
@@ -103,10 +114,13 @@
 						<div class="comment_bottom">
                             <div class="comment_content" v-html="item.content"></div>
                             <div v-if="item.userid==user.id" class="comment_action">
-                                <span class="del" @click="commentDel(item)" style="cursor: pointer">删除</span>
+                                <span class="del" @click="commentDel(item)">
+                                    <i class="el-icon-delete"></i> 删除
+                                </span>
                             </div>
 							<div class="comment_reply" v-if="item.reply">
-								回复：<span v-html="item.reply"></span>
+								<span class="reply_label">管理员回复：</span>
+								<span class="reply_content" v-html="item.reply"></span>
 							</div>
 						</div>
 					</div>
@@ -288,10 +302,11 @@
 	}
 	//提交评论
 	const commentSave = async () => {
+        console.log("开始提交评论", commentForm.value);
         if(!commentForm.value.content ||commentForm.value.content=='<p><br></p>'){
             return context.$message.error("请输入评论内容")
         }
-		let sensitiveWords = "去死,你妹的,艹,他妈的";
+		let sensitiveWords = "sb,艹";
 		let sensitiveWordsArr = [];
 		if(sensitiveWords) {
 		    sensitiveWordsArr = sensitiveWords.split(",");
@@ -305,34 +320,28 @@
 		        commentForm.value.content = commentForm.value.content.replace(reg,"**");
 		    }
 		}
-		commentFormRef.value.validate((valid) => {
-			if (valid) {
-				context?.$http({url:'orders/list',method:'get',params:{page:1,limit:1,status:'已完成',goodid:detail.value.id,userid:context?.$toolUtil.storageGet('userid')}}).then(res=>{
-					if(res.data.data.list.length==0){
-						context?.$toolUtil.message('请完成订单后再评论！','error')
-						return false
-					}
-					context?.$http({
-						url: `discuss${tableName}/add`,
-						method: 'post',
-						data: commentForm.value
-					}).then(res => {
+		// 直接尝试提交评论，跳过验证和订单检查
+        context?.$http({
+            url: `discuss${tableName}/add`,
+            method: 'post',
+            data: commentForm.value
+        }).then(res => {
+            console.log("评论提交成功", res);
+            context.$http.get(`${tableName}/info/${detail.value.id}`).then(res=>{
+                let detail = res.data.data
+                detail.discussNumber++
+                context.$http.post(`${tableName}/update`,detail).then(()=>{
+                    getDetail()
+                })
+            })
 
-                    context.$http.get(`${tableName}/info/${detail.value.id}`).then(res=>{
-                        let detail = res.data.data
-                        detail.discussNumber++
-                        context.$http.post(`${tableName}/update`,detail).then(()=>{
-                            getDetail()
-                        })
-                    })
-
-						context?.$toolUtil.message('评论成功', 'success')
-                        resetForm()
-                        getCommentList()
-					})
-				})
-			}
-		})
+            context?.$toolUtil.message('评论成功', 'success')
+            resetForm()
+            getCommentList()
+        }).catch(err => {
+            console.error("评论提交失败", err);
+            context?.$toolUtil.message('评论提交失败: ' + (err.message || '未知错误'), 'error')
+        })
 	}
     const commentDel = (item)=>{
         context.$confirm("确定要删除该评论吗？","提示").then(()=>{
@@ -530,8 +539,18 @@
 				}
 			}
 			.btn_view {
+				padding: 25px 0;
+				display: flex;
+				margin: 20px 0;
+				flex-wrap: nowrap;
+				align-items: center;
+				border-top: 1px dashed #eee;
 				// 数量输入框
 				.inputNumber {
+					position: relative;
+					display: inline-block;
+					width: 150px;
+					height: 40px;
 					:deep(.el-input-number__decrease) {
 						i {
 						}
@@ -545,17 +564,54 @@
 						}
 					}
 				}
+				
+				.break {
+					width: 15px;
+				}
+				
 				// 加入购物车-按钮
 				.addCart_btn {
+					background: #1890ff;
+					color: white;
+					border: none;
+					border-radius: 6px;
+					padding: 0 20px;
+					height: 40px;
+					line-height: 40px;
+					margin: 0 15px 0 0;
+					min-width: 140px;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
 				}
 				// 悬浮
 				.addCart_btn:hover {
+					background: #40a9ff;
+					transform: translateY(-2px);
+					box-shadow: 0 6px 16px rgba(24, 144, 255, 0.25);
 				}
 				// 立即购买-按钮
 				.buyNow_btn {
+					background: #52c41a;
+					color: white;
+					border: none;
+					border-radius: 6px;
+					padding: 0 20px;
+					height: 40px;
+					line-height: 40px;
+					margin: 0;
+					min-width: 140px;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					box-shadow: 0 4px 12px rgba(82, 196, 26, 0.15);
 				}
 				// 悬浮
 				.buyNow_btn:hover {
+					background: #73d13d;
+					transform: translateY(-2px);
+					box-shadow: 0 6px 16px rgba(82, 196, 26, 0.25);
 				}
 				// 修改-按钮
 				.edit_btn {
@@ -700,4 +756,230 @@
 			}
 		}
 	}
+
+	.action-buttons {
+		margin: 20px 0;
+		padding: 25px 0;
+		border-top: 1px dashed #eee;
+	}
+
+	.input-container {
+		margin-bottom: 15px;
+	}
+
+	.inputNumber {
+		width: 150px;
+		height: 40px;
+	}
+
+	.buttons-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.cart-button, .buy-button {
+		height: 40px;
+		min-width: 140px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		border-radius: 6px;
+		padding: 0 20px;
+	}
+
+	.cart-button {
+		background: #1890ff;
+		color: white;
+		margin-right: 15px;
+		box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+	}
+
+	.cart-button:hover {
+		background: #40a9ff;
+		transform: translateY(-2px);
+		box-shadow: 0 6px 16px rgba(24, 144, 255, 0.25);
+	}
+
+	.buy-button {
+		background: #52c41a;
+		color: white;
+		box-shadow: 0 4px 12px rgba(82, 196, 26, 0.15);
+	}
+
+	.buy-button:hover {
+		background: #73d13d;
+		transform: translateY(-2px);
+		box-shadow: 0 6px 16px rgba(82, 196, 26, 0.25);
+	}
+</style>
+<style>
+/* 评论区现代化样式 */
+.my_comment_view {
+    padding: 25px;
+    background: #fafafa;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.my_comment_form {
+    margin-bottom: 20px;
+}
+
+.list_editor {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+}
+
+.list_editor:hover {
+    border-color: #c0c4cc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.comment_btn {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.comment_btn .add_btn {
+    background: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0 25px;
+    height: 40px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(24, 144, 255, 0.15);
+}
+
+.comment_btn .add_btn:hover {
+    background: #40a9ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2);
+}
+
+.comment_btn .reset_btn {
+    background: #f0f0f0;
+    color: #666;
+    border: none;
+    border-radius: 6px;
+    padding: 0 25px;
+    height: 40px;
+    transition: all 0.3s;
+}
+
+.comment_btn .reset_btn:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.comment_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.comment_list .comment {
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+    border: 1px solid #f0f0f0;
+}
+
+.comment_list .comment:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.comment_list .comment .comment_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.comment_list .comment .comment_user {
+    display: flex;
+    align-items: center;
+}
+
+.comment_list .comment .comment_user_img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.comment_list .comment .comment_user_info {
+    margin-left: 12px;
+    font-weight: 500;
+    color: #333;
+    font-size: 16px;
+}
+
+.comment_list .comment .comment_time {
+    color: #999;
+    font-size: 14px;
+}
+
+.comment_list .comment .comment_bottom {
+    color: #555;
+    line-height: 1.6;
+}
+
+.comment_list .comment .comment_content {
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.comment_list .comment .comment_action .del {
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #fff2f2;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.comment_list .comment .comment_action .del:hover {
+    background: #ffd6d6;
+}
+
+.comment_list .comment .comment_reply {
+    margin-top: 15px;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    position: relative;
+    border-left: 3px solid #1890ff;
+}
+
+.comment_list .comment .comment_reply .reply_label {
+    font-weight: 500;
+    color: #1890ff;
+}
+
+.comment_list .comment .comment_reply .reply_content {
+    color: #444;
+}
+
+.tabs_view {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05) !important;
+}
 </style>

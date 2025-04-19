@@ -734,15 +734,21 @@ cursor: default;
 
 
 .detail-page .detail_view .info_view .info_item{
-    width: calc(100% - 0px);
-    margin:0 10px 10px 0 !important;
-    padding: 5px 10px;
+    width: 100%;
+    margin: 0 0 16px 0;
+    padding: 12px 15px;
     display: flex;
     align-items: center;
-    background: #fff;
-    border-bottom:1px solid var(--theme);
+    background: #fafafa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
+.detail-page .detail_view .info_view .info_item:hover {
+    background: #f5f7fa;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
 
 .detail-page .detail_view .info_view .info_item .info_label{
     width: auto;
@@ -762,7 +768,14 @@ cursor: default;
 }
 
 .detail-page .detail_view .info_view .info_item .info_price{
-    color: rgb(255, 0, 0);
+    color: #ff6b6b;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.detail-page .detail_view .info_view .info_item .info_price span{
+    font-size: 16px;
+    margin-right: 2px;
 }
 
 .detail-page .detail_view .info_view .info_item .down_btn{
@@ -796,8 +809,8 @@ cursor: default;
     position: relative;
     display: inline-block;
     width: 150px;
-    height: 34px;
-    line-height: 34px;
+    height: 40px;
+    line-height: 40px;
     margin: 0px 10px 10px 0px;
 }
 
@@ -817,7 +830,7 @@ cursor: default;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 32px;
+    height: 38px;
 }
 
 .detail-page .detail_view .info_view .btn_view .inputNumber .el-icon-minus{
@@ -841,7 +854,7 @@ cursor: default;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 32px;
+    height: 38px;
 }
 
 .detail-page .detail_view .info_view .btn_view .inputNumber .el-icon-plus{
@@ -855,9 +868,9 @@ cursor: default;
     border: 1px solid rgb(220, 223, 230);
     color: rgb(102, 102, 102);
     display: inline-block;
-    font-size: 14px;
-    height: 34px;
-    line-height: 34px;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
     outline: none;
     width: 100%;
     text-align: center;
@@ -865,17 +878,22 @@ cursor: default;
 
 
 .detail-page .detail_view .info_view .btn_view .addCart_btn{
-    background: rgba(80, 160, 220,.3);
-    color: rgb(55, 55, 55);
+    background: #1890ff;
+    color: white;
     border: none;
-    border-radius: 4px;
-    padding: 0 5px;
-    height: 34px;
-    line-height: 34px;
-    margin: 0px 10px 10px 0px;
-    min-width:60px;
+    border-radius: 6px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 15px 0 0;
+    min-width: 140px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
 }
 .detail-page .detail_view .info_view .btn_view .addCart_btn:hover{
+    background: #40a9ff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(24, 144, 255, 0.25);
 }
 
 .detail-page .detail_view .info_view .btn_view .action_btn{
@@ -918,16 +936,22 @@ cursor: default;
 }
 
 .detail-page .detail_view .info_view .btn_view .buyNow_btn{
-    background: rgba(254, 176, 67,.3);
-    color: rgb(55, 55, 55);
+    background: #52c41a;
+    color: white;
     border: none;
-    border-radius: 4px;
-    padding: 0 5px;
-    height: 34px;
-    margin: 0px 10px 10px 0px;
-    min-width:60px;
+    border-radius: 6px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0px 15px 10px 0px;
+    min-width: 140px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.15);
 }
 .detail-page .detail_view .info_view .btn_view .buyNow_btn:hover{
+    background: #73d13d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(82, 196, 26, 0.25);
 }
 
 .detail-page .detail_view .info_view .btn_view .openGroup_btn{
@@ -956,17 +980,24 @@ cursor: default;
 .detail-page .detail_view .info_view .btn_view .goGroup_btn:hover{
 }
 
-.detail-page .detail_view .info_view .btn_view .jf_btn{
-    background: rgba(220, 160, 80,.3);
-    color: rgb(55, 55, 55);
+.detail-page .detail_view .info_view .btn_view .jf_btn {
+    background: #ff9800;
+    color: white;
     border: none;
-    border-radius: 4px;
-    padding: 0 5px;
-    height: 34px;
-    margin: 0px 10px 10px 0px;
-    min-width:60px;
+    border-radius: 6px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0px 15px 10px 0px;
+    min-width: 140px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
 }
-.detail-page .detail_view .info_view .btn_view .jf_btn:hover{
+
+.detail-page .detail_view .info_view .btn_view .jf_btn:hover {
+    background: #ffb74d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.25);
 }
 
 .detail-page .detail_view .info_view .btn_view .book_btn{

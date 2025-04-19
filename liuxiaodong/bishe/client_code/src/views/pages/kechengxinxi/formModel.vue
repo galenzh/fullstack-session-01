@@ -79,9 +79,15 @@
 				<div class="btn_view">
 					<el-input-number class="inputNumber" v-model="buyNumber" :min="1" ></el-input-number>
                     <div class="break"></div>
-					<el-button class="addCart_btn"  type="primary" @click="addCart">加入购物车</el-button>
-					<el-button class="buyNow_btn"  type="primary" @click="buyNow">立即购买</el-button>
-					<el-button class="jf_btn"  type="primary" @click="jfTap">积分兑换</el-button>
+					<el-button class="addCart_btn"  type="primary" @click="addCart">
+						<i class="el-icon-shopping-cart-2"></i> 加入购物车
+					</el-button>
+					<el-button class="buyNow_btn"  type="success" @click="buyNow">
+						<i class="el-icon-shopping-bag-1"></i> 立即购买
+					</el-button>
+					<el-button class="jf_btn"  type="warning" @click="jfTap">
+						<i class="el-icon-medal"></i> 积分兑换
+					</el-button>
 				</div>
 				<div class="btn_view">
 					<el-button class="edit_btn" v-if="centerType&&btnAuth('kechengxinxi','修改')" type="primary" @click="editClick">修改</el-button>

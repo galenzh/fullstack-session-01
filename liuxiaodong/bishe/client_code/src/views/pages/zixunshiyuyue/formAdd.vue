@@ -451,7 +451,7 @@
 	//初始化
 	//取消
 	const backClick = () => {
-		history.back()
+		history.go(-2)
 	}
 	//提交
 	const save=()=>{
@@ -524,7 +524,7 @@
 									// 显示更详细的预约成功信息
 									let successMsg = `预约成功！您已成功预约${form.value.zixunshizhanghao}在${form.value.yuyueshijian} ${form.value.timeSlot}的咨询`
 									context?.$toolUtil.message(successMsg, 'success', () => {
-                                history.back()
+                                history.go(-2)
 									})
 							})
 						}
@@ -538,7 +538,7 @@
 							// 显示更详细的预约成功信息
 							let successMsg = `预约成功！您已成功预约${form.value.zixunshizhanghao}在${form.value.yuyueshijian} ${form.value.timeSlot}的咨询`
 							context?.$toolUtil.message(successMsg, 'success', () => {
-                        history.back()
+                        history.go(-2)
 							})
 					})
 				}
