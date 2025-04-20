@@ -22,10 +22,26 @@
     </div>
 
     <div id="score" class="score"></div>
+    
+    <!-- 添加游戏开始界面 -->
+    <div id="game-start" class="game-screen">
+      <div class="game-title">Flappy Bird</div>
+      <div class="start-button">点击开始</div>
+      <div class="instruction">空格键或点击屏幕让小鸟飞翔</div>
+    </div>
+    
+    <!-- 添加游戏结束界面 -->
+    <div id="game-over" class="game-screen">
+      <div class="game-over-title">游戏结束</div>
+      <div class="final-score">得分: <span id="final-score">0</span></div>
+      <div class="high-score">最高分: <span id="high-score">0</span></div>
+      <div class="restart-button">重新开始</div>
+    </div>
   </div>
   <audio id="wing" src="https://flynngao.github.io/FlappyTube/res/sfx_wing.mp3"></audio>
   <audio id="crash" src="https://flynngao.github.io/FlappyTube/res/sfx_die.mp3"></audio>
   <audio id="hit" src="https://flynngao.github.io/FlappyTube/res/sfx_hit.mp3"></audio>
+  <audio id="point" src="https://flynngao.github.io/FlappyTube/res/sfx_point.mp3"></audio>
   <script src="index.js"></script>
 </body>
 </html>
